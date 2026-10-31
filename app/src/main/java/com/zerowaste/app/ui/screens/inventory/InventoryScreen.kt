@@ -1,8 +1,5 @@
 package com.zerowaste.app.ui.screens.inventory
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,20 +16,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Kitchen
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -42,6 +37,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,10 +56,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.zerowaste.app.R
+import com.zerowaste.app.data.model.FoodExpiryStatus
 import com.zerowaste.app.data.model.FoodItem
-import com.zerowaste.app.data.model.FoodStatus
-import com.zerowaste.app.data.model.QuantityUnit
-import com.zerowaste.app.data.model.StorageLocation
+import com.zerowaste.app.data.model.FoodItemStatus
 import com.zerowaste.app.ui.theme.expiredGradient
 import com.zerowaste.app.ui.theme.freshGradient
 import com.zerowaste.app.ui.theme.soonGradient
@@ -69,14 +67,12 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * InventoryScreen — شاشة المخزون الكاملة
+ * InventoryScreen — شاشة المخزون الكاملة (محدّثة D6)
  *
- * - قائمة بالأطعمة مرتبة حسب تاريخ الانتهاء
- * - بطاقات ملوّنة حسب الحالة (طازج/قريب/منتهي)
- * - فلتر + بحث
- * - عدّادات في الأعلى
- * - زر حذف على كل بطاقة
- * - حالة فارغة (empty state)
+ * ✅ بطاقات قابلة للضغط → تفتح FoodActionBottomSheet
+ * ✅ بادج الحالة على كل بطاقة (متاح/قيد الاستخدام/منتهي/إلخ)
+ * ✅ عرض الكمية المتبقية/الأصلية (مثل: 3/5)
+ * ✅ فلتر HISTORY لعرض السجل
  */
 @Composable
 fun InventoryScreen(
@@ -86,6 +82,13 @@ fun InventoryScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
+    // ✅ العنصر المُحدَّد لفتح الـ Bottom Sheet
+    var selectedItem by remember { mutableStateOf<Pair<FoodItem, FoodExpiryStatus>?>(null) }
+
+    // ✅ بانر التلميح: يظهر في الجلسة الحالية حتى يضغط المستخدم على أي بطاقة
+    // rememberSaveable يحافظ عليه عبر تغيير orientation
+    var showHint by rememberSaveable { mutableStateOf(true) }
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
@@ -93,33 +96,111 @@ fun InventoryScreen(
         Column(
             modifier = Modifier.fillMaxSize(),
         ) {
-            // ─────────── العنوان + عدّادات ───────────
+            // العنوان + عدّادات
             InventoryHeader(
                 totalCount = state.totalCount,
-                expiringCount = state.expiringCount,
+                activeCount = state.activeCount,
                 expiredCount = state.expiredCount,
             )
 
-            // ─────────── البحث ───────────
+            // ✅ بانر التلميح — يظهر فقط إذا:
+            //   1) showHint = true (لم يضغط على بطاقة بعد)
+            //   2) المخزون غير فارغ (لا فائدة من التلميح إن لم توجد بطاقات)
+            if (showHint && !state.isEmpty) {
+                HintBanner(onDismiss = { showHint = false })
+            }
+
             SearchBar(
                 query = state.searchQuery,
                 onQueryChange = viewModel::onSearchChanged,
             )
 
-            // ─────────── الفلاتر ───────────
             FilterChips(
                 selected = state.filter,
                 onSelect = viewModel::onFilterChanged,
             )
 
-            // ─────────── القائمة ───────────
             if (state.isEmpty) {
                 EmptyState(onAddClick = onAddFoodClick)
             } else {
                 FoodList(
                     items = state.items,
-                    onDelete = viewModel::deleteItem,
+                    onItemClick = { item, expiryStatus ->
+                        // ✅ أول ضغطة → إخفاء البانر
+                        showHint = false
+                        selectedItem = item to expiryStatus
+                    },
                     modifier = Modifier.fillMaxSize(),
+                )
+            }
+        }
+    }
+
+    // ✅ عرض الـ Bottom Sheet عند تحديد عنصر
+    selectedItem?.let { (item, expiryStatus) ->
+        FoodActionBottomSheet(
+            foodItem = item,
+            expiryStatus = expiryStatus,
+            onUse = { amount -> viewModel.useAmount(item, amount) },
+            onFinish = { viewModel.finish(item) },
+            onDiscard = { viewModel.discard(item) },
+            onEdit = { qty, expiry, loc -> viewModel.edit(item, qty, expiry, loc) },
+            onRepurchase = { viewModel.repurchase(item) },
+            onDelete = { viewModel.delete(item) },
+            onDismiss = { selectedItem = null },
+        )
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  HintBanner — بانر تلميح مؤقت يختفي عند أول ضغطة
+// ═══════════════════════════════════════════════════════════════════
+
+@Composable
+private fun HintBanner(onDismiss: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+        ),
+        shape = RoundedCornerShape(12.dp),
+        border = androidx.compose.foundation.BorderStroke(
+            1.dp,
+            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+        ),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            // 💡 إيموجي الإضاءة
+            Text(
+                text = "💡",
+                fontSize = 20.sp,
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            // النص
+            Text(
+                text = stringResource(R.string.hint_tap_card),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.weight(1f),
+            )
+            // زر الإغلاق ×
+            IconButton(
+                onClick = onDismiss,
+                modifier = Modifier.size(28.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Close,
+                    contentDescription = stringResource(R.string.action_close),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
                 )
             }
         }
@@ -127,13 +208,13 @@ fun InventoryScreen(
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  InventoryHeader — العنوان + 3 عدّادات
+//  Header
 // ═══════════════════════════════════════════════════════════════════
 
 @Composable
 private fun InventoryHeader(
     totalCount: Int,
-    expiringCount: Int,
+    activeCount: Int,
     expiredCount: Int,
 ) {
     Column(
@@ -159,12 +240,12 @@ private fun InventoryHeader(
                 modifier = Modifier.weight(1f),
             )
             StatCard(
-                label = stringResource(R.string.inventory_count_expiring, expiringCount),
-                color = Color(0xFFFFA726),
+                label = "🟢 $activeCount",
+                color = Color(0xFF4CAF50),
                 modifier = Modifier.weight(1f),
             )
             StatCard(
-                label = stringResource(R.string.inventory_count_expired, expiredCount),
+                label = "⏰ $expiredCount",
                 color = Color(0xFFEF5350),
                 modifier = Modifier.weight(1f),
             )
@@ -180,9 +261,7 @@ private fun StatCard(
 ) {
     Card(
         modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = color.copy(alpha = 0.15f)
-        ),
+        colors = CardDefaults.cardColors(containerColor = color.copy(alpha = 0.15f)),
         shape = RoundedCornerShape(12.dp),
     ) {
         Text(
@@ -211,9 +290,7 @@ private fun SearchBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp),
-        placeholder = {
-            Text(text = stringResource(R.string.inventory_search_hint))
-        },
+        placeholder = { Text(text = stringResource(R.string.inventory_search_hint)) },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Filled.Search,
@@ -221,17 +298,24 @@ private fun SearchBar(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         },
+        trailingIcon = {
+            if (query.isNotEmpty()) {
+                IconButton(onClick = { onQueryChange("") }) {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        },
         singleLine = true,
         shape = RoundedCornerShape(50),
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Search,
-        ),
     )
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  FilterChips
+//  FilterChips — محدّث (D4)
 // ═══════════════════════════════════════════════════════════════════
 
 @Composable
@@ -248,13 +332,13 @@ private fun FilterChips(
                 InventoryFilter.ALL -> R.string.inventory_filter_all
                 InventoryFilter.EXPIRING -> R.string.inventory_filter_expiring
                 InventoryFilter.EXPIRED -> R.string.inventory_filter_expired
-                InventoryFilter.FRESH -> R.string.inventory_filter_fresh
+                InventoryFilter.HISTORY -> R.string.inventory_filter_history
             }
             val isSelected = filter == selected
             val bgColor = if (isSelected) MaterialTheme.colorScheme.primary
-                          else MaterialTheme.colorScheme.surfaceVariant
+            else MaterialTheme.colorScheme.surfaceVariant
             val contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimary
-                               else MaterialTheme.colorScheme.onSurfaceVariant
+            else MaterialTheme.colorScheme.onSurfaceVariant
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50))
@@ -279,8 +363,8 @@ private fun FilterChips(
 
 @Composable
 private fun FoodList(
-    items: List<Pair<FoodItem, FoodStatus>>,
-    onDelete: (FoodItem) -> Unit,
+    items: List<Pair<FoodItem, FoodExpiryStatus>>,
+    onItemClick: (FoodItem, FoodExpiryStatus) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -288,50 +372,49 @@ private fun FoodList(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(items, key = { it.first.id }) { (item, status) ->
+        items(items, key = { it.first.id }) { (item, expiryStatus) ->
             FoodCard(
                 item = item,
-                status = status,
-                onDelete = { onDelete(item) },
+                expiryStatus = expiryStatus,
+                onClick = { onItemClick(item, expiryStatus) },
             )
         }
-        // مساحة للـ bottom bar
         item { Spacer(modifier = Modifier.height(80.dp)) }
     }
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  FoodCard — بطاقة الطعام
+//  FoodCard — محدّثة (D6)
+// ✅ قابلة للضغط
+// ✅ بادج الحالة (متاح/قيد الاستخدام/منتهي/إلخ)
+// ✅ عرض الكمية المتبقية/الأصلية
 // ═══════════════════════════════════════════════════════════════════
 
 @Composable
 private fun FoodCard(
     item: FoodItem,
-    status: FoodStatus,
-    onDelete: () -> Unit,
+    expiryStatus: FoodExpiryStatus,
+    onClick: () -> Unit,
 ) {
-    // اختيار التدرّج اللوني حسب الحالة
-    val gradient = when (status) {
-        FoodStatus.FRESH -> freshGradient
-        FoodStatus.SOON -> soonGradient
-        FoodStatus.EXPIRED -> expiredGradient
+    val status = item.toStatus()
+    val category = item.toCategory()
+    val location = item.toLocation()
+    val unit = item.toUnit()
+
+    // التدرّج اللوني حسب حالة الصلاحية (للأيقونة)
+    val gradient = when (expiryStatus) {
+        FoodExpiryStatus.FRESH -> freshGradient
+        FoodExpiryStatus.SOON -> soonGradient
+        FoodExpiryStatus.EXPIRED -> expiredGradient
     }
 
-    // لون البادج
-    val statusColor = when (status) {
-        FoodStatus.FRESH -> Color(0xFF4CAF50)
-        FoodStatus.SOON -> Color(0xFFFFA726)
-        FoodStatus.EXPIRED -> Color(0xFFEF5350)
-    }
-
-    val statusText = when (status) {
-        FoodStatus.FRESH -> "طازج"
-        FoodStatus.SOON -> "قريب"
-        FoodStatus.EXPIRED -> "منتهي"
-    }
+    // لون الحالة (للبادج)
+    val statusColor = Color(status.colorArgb)
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),  // ✅ قابل للضغط
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -345,7 +428,7 @@ private fun FoodCard(
             modifier = Modifier.fillMaxWidth().padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            // ─── أيقونة الفئة (دائرة متدرّجة) ───
+            // أيقونة الفئة (دائرة متدرّجة)
             Box(
                 modifier = Modifier
                     .size(48.dp)
@@ -353,17 +436,14 @@ private fun FoodCard(
                     .background(gradient),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(
-                    imageVector = item.toCategory().icon,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp),
+                Text(
+                    text = category.emoji,
+                    fontSize = 24.sp,
                 )
             }
 
             Spacer(modifier = Modifier.width(12.dp))
 
-            // ─── الاسم + الكمية + التاريخ ───
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -378,32 +458,29 @@ private fun FoodCard(
                     overflow = TextOverflow.Ellipsis,
                 )
 
-                // الكمية + المكان
+                // الكمية المتبقية / الأصلية + المكان
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    // الكمية
+                    // ✅ عرض الكمية المتبقية/الأصلية
                     Text(
-                        text = "${item.quantity} ${stringResource(item.toUnit().symbolResId)}",
+                        text = "${item.remainingQuantity}/${item.quantity} ${stringResource(unit.symbolResId)}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontWeight = FontWeight.Medium,
                     )
 
-                    // فاصل
                     Text(
                         text = "•",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
 
                     // المكان
-                    val location = item.toLocation()
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = location.icon,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.size(14.dp),
+                        Text(
+                            text = location.emoji,
+                            fontSize = 12.sp,
                         )
                         Spacer(modifier = Modifier.width(2.dp))
                         Text(
@@ -424,7 +501,7 @@ private fun FoodCard(
                 )
             }
 
-            // ─── بادج الحالة ───
+            // ✅ بادج الحالة (متاح/قيد الاستخدام/منتهي/إلخ)
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50))
@@ -432,25 +509,8 @@ private fun FoodCard(
                     .padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
                 Text(
-                    text = statusText,
-                    color = statusColor,
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-
-            Spacer(modifier = Modifier.width(4.dp))
-
-            // ─── زر الحذف ───
-            IconButton(
-                onClick = onDelete,
-                modifier = Modifier.size(32.dp),
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Delete,
-                    contentDescription = stringResource(R.string.action_delete),
-                    tint = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.size(20.dp),
+                    text = status.emoji,
+                    fontSize = 14.sp,
                 )
             }
         }
@@ -471,7 +531,6 @@ private fun EmptyState(onAddClick: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            // أيقونة كبيرة
             Box(
                 modifier = Modifier
                     .size(120.dp)
@@ -487,7 +546,6 @@ private fun EmptyState(onAddClick: () -> Unit) {
                 )
             }
 
-            // النص
             Text(
                 text = stringResource(R.string.inventory_empty),
                 style = MaterialTheme.typography.bodyLarge,
@@ -495,7 +553,6 @@ private fun EmptyState(onAddClick: () -> Unit) {
                 textAlign = TextAlign.Center,
             )
 
-            // زر الإضافة
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50))

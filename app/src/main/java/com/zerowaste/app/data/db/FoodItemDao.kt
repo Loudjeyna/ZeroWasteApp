@@ -1,6 +1,5 @@
 package com.zerowaste.app.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -13,8 +12,9 @@ import kotlinx.coroutines.flow.Flow
 /**
  * FoodItemDao — Data Access Object لعمليات قاعدة البيانات على FoodItem
  *
- * كل الدوال تعمل على background thread تلقائياً (suspend)
- * ما عدا those returning Flow/LiveData (تُحدَّث تلقائياً عند تغيير البيانات)
+ * تحديثات D1:
+ *  - دوال use/finish/discard (تحديث consumedQuantity و status)
+ *  - فلترة حسب status (نشط / منتهي / سجل)
  */
 @Dao
 interface FoodItemDao {
@@ -40,7 +40,7 @@ interface FoodItemDao {
     @Query("DELETE FROM food_items")
     suspend fun deleteAll()
 
-    // ── SELECT ──────────────────────────────────────────────
+    // ── SELECT (الكل) ─────────────────────────────────────
     @Query("SELECT * FROM food_items ORDER BY expiryTimestamp ASC")
     fun getAllAsStream(): Flow<List<FoodItem>>
 
@@ -50,31 +50,102 @@ interface FoodItemDao {
     @Query("SELECT * FROM food_items WHERE id = :id")
     suspend fun getById(id: Long): FoodItem?
 
-    // ── COUNTS (للبادجات) ────────────────────────────────
+    // ── SELECT حسب status ───────────────────────────────
+    /** العناصر النشطة فقط (AVAILABLE + IN_USE) — للمخزون الافتراضي */
+    @Query("SELECT * FROM food_items WHERE status IN ('AVAILABLE', 'IN_USE') ORDER BY expiryTimestamp ASC")
+    fun getActiveAsStream(): Flow<List<FoodItem>>
+
+    /** العناصر المنتهية صلاحيتها */
+    @Query("SELECT * FROM food_items WHERE status = 'EXPIRED' ORDER BY expiryTimestamp ASC")
+    fun getExpiredAsStream(): Flow<List<FoodItem>>
+
+    /** السجل (FINISHED + DISCARDED) — لشاشة الإحصاءات لاحقاً */
+    @Query("SELECT * FROM food_items WHERE status IN ('FINISHED', 'DISCARDED') ORDER BY actionTimestamp DESC")
+    fun getHistoryAsStream(): Flow<List<FoodItem>>
+
+    // ── COUNTS ───────────────────────────────────────────
     @Query("SELECT COUNT(*) FROM food_items")
     fun countAll(): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM food_items WHERE expiryTimestamp <= :threshold")
-    fun countExpiring(threshold: Long): Flow<Int>
+    @Query("SELECT COUNT(*) FROM food_items WHERE status IN ('AVAILABLE', 'IN_USE')")
+    fun countActive(): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM food_items WHERE expiryTimestamp <= :now")
-    fun countExpired(now: Long): Flow<Int>
+    @Query("SELECT COUNT(*) FROM food_items WHERE status = 'EXPIRED'")
+    fun countExpired(): Flow<Int>
 
-    // ── FILTERS (حسب الفئة) ──────────────────────────────
+    /**
+     * عدد العناصر النشطة التي ستنتهي صلاحيتها خلال `thresholdMillis` (3 أيام عادة)
+     */
+    @Query("""
+        SELECT COUNT(*) FROM food_items
+        WHERE status IN ('AVAILABLE', 'IN_USE')
+          AND expiryTimestamp <= :thresholdMillis
+          AND expiryTimestamp > :nowMillis
+    """)
+    fun countExpiring(thresholdMillis: Long, nowMillis: Long): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM food_items WHERE status = 'DISCARDED'")
+    fun countDiscarded(): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM food_items WHERE status = 'FINISHED'")
+    fun countFinished(): Flow<Int>
+
+    // ── FILTERS حسب الفئة/المكان ──────────────────────
     @Query("SELECT * FROM food_items WHERE categoryId = :category ORDER BY expiryTimestamp ASC")
     fun getByCategory(category: String): Flow<List<FoodItem>>
 
-    // ── FILTERS (حسب مكان التخزين) ───────────────────────
     @Query("SELECT * FROM food_items WHERE locationId = :location ORDER BY expiryTimestamp ASC")
     fun getByLocation(location: String): Flow<List<FoodItem>>
 
-    // ── FILTERS (حسب قرب الانتهاء) ──────────────────────
-    @Query("SELECT * FROM food_items WHERE expiryTimestamp <= :threshold AND expiryTimestamp > :now ORDER BY expiryTimestamp ASC")
-    fun getExpiringSoon(threshold: Long, now: Long): Flow<List<FoodItem>>
+    // ── تحديثات Use / Finish / Discard ───────────────
 
-    @Query("SELECT * FROM food_items WHERE expiryTimestamp <= :now ORDER BY expiryTimestamp ASC")
-    fun getExpired(now: Long): Flow<List<FoodItem>>
+    /**
+     * Use: استهلاك جزء من الطعام
+     * @param id معرّف الطعام
+     * @param amount الكمية المُستهلَكة (سيُضاف إلى consumedQuantity)
+     * @param newStatus الحالة الجديدة (IN_USE أو FINISHED)
+     * @param timestamp وقت الإجراء
+     */
+    @Query("""
+        UPDATE food_items
+        SET consumedQuantity = consumedQuantity + :amount,
+            status = :newStatus,
+            actionTimestamp = :timestamp
+        WHERE id = :id
+    """)
+    suspend fun useAmount(
+        id: Long,
+        amount: Int,
+        newStatus: String,
+        timestamp: Long
+    )
 
-    @Query("SELECT * FROM food_items WHERE expiryTimestamp > :threshold ORDER BY expiryTimestamp ASC")
-    fun getFresh(threshold: Long): Flow<List<FoodItem>>
+    /**
+     * Finish: استهلاك كامل (وضع consumedQuantity = quantity)
+     */
+    @Query("""
+        UPDATE food_items
+        SET consumedQuantity = quantity,
+            status = 'FINISHED',
+            actionTimestamp = :timestamp
+        WHERE id = :id
+    """)
+    suspend fun finishItem(id: Long, timestamp: Long)
+
+    /**
+     * Discard: تخلّص منه (status = DISCARDED، لا نغيّر consumedQuantity)
+     */
+    @Query("""
+        UPDATE food_items
+        SET status = 'DISCARDED',
+            actionTimestamp = :timestamp
+        WHERE id = :id
+    """)
+    suspend fun discardItem(id: Long, timestamp: Long)
+
+    /**
+     * تحديث الحالة فقط (للـ auto-expire)
+     */
+    @Query("UPDATE food_items SET status = :newStatus, actionTimestamp = :timestamp WHERE id = :id")
+    suspend fun updateStatus(id: Long, newStatus: String, timestamp: Long)
 }

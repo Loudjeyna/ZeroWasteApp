@@ -8,15 +8,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 /**
  * BadgesViewModel — يحسب البادجات الحقيقية لكل تبويب
  *
- * - Inventory: عدد الأطعمة التي قاربت الانتهاء
- * - Add: 0 دائماً (ليس له بادج)
+ * - Inventory: عدد العناصر التي تحتاج انتباهاً (قاربت الانتهاء + منتهية)
+ * - Add: 0 دائماً
  * - Recipes / Shopping / Settings: 0 (ستُربط لاحقاً)
  */
 @HiltViewModel
@@ -26,12 +25,15 @@ class BadgesViewModel @Inject constructor(
 
     /**
      * حالة البادجات - تتحدّث تلقائياً عند تغيير Room
+     *
+     * ✅ محدّث (D-fix):
+     *  - نستعمل countExpiring() (بدون معاملات) - يأخذ الافتراضي 3 أيام
+     *  - نستعمل countExpired() (بدون معاملات)
      */
     val badges: StateFlow<Map<BottomTab, Int>> = combine(
-        foodRepository.countAll(),
-        foodRepository.countExpiring(System.currentTimeMillis() + (3L * 24 * 60 * 60 * 1000)),
-        foodRepository.countExpired(System.currentTimeMillis()),
-    ) { total, expiring, expired ->
+        foodRepository.countExpiring(),
+        foodRepository.countExpired(),
+    ) { expiring, expired ->
         // بادج المخزون = (قارب الانتهاء + منتهي) — يدل على ما يستوجب الانتباه
         mapOf(
             BottomTab.INVENTORY to (expiring + expired),

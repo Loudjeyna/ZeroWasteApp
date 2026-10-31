@@ -25,10 +25,10 @@
     <!-- ═════════════ Inventory ═════════════ -->
     <string name="inventory_title">My Inventory</string>
     <string name="inventory_empty">Inventory is empty\nTap the Add button to add food</string>
-    <string name="inventory_filter_all">All</string>
+    <string name="inventory_filter_all">Active</string>
     <string name="inventory_filter_expiring">Expiring soon</string>
     <string name="inventory_filter_expired">Expired</string>
-    <string name="inventory_filter_fresh">Fresh</string>
+    <string name="inventory_filter_history">History</string>
     <string name="inventory_search_hint">Search inventory…</string>
     <string name="inventory_count_total">Total items: %1$d</string>
     <string name="inventory_count_expiring">Expiring soon: %1$d</string>
@@ -247,6 +247,8 @@
     <string name="unit_gram_symbol">g</string>
     <string name="unit_liter">Liter</string>
     <string name="unit_liter_symbol">L</string>
+    <string name="unit_milliliter">Milliliter</string>
+    <string name="unit_milliliter_symbol">ml</string>
     <string name="unit_pack">Pack</string>
     <string name="unit_pack_symbol">pack</string>
     <string name="unit_dozen">Dozen</string>
@@ -274,4 +276,152 @@
     <string name="add_step_5">5. Location</string>
     <string name="add_quantity_decrease">Decrease</string>
     <string name="add_quantity_increase">Increase</string>
+    <string name="smart_suggestion">Smart suggestion</string>
+    <string name="unit_label">Unit</string>
+
+    <!-- ═════════════ Recipes screen ═════════════ -->
+    <string name="recipes_filter_all">All</string>
+    <string name="recipes_filter_cookable">What I can cook now</string>
+    <string name="recipes_filter_partial">Missing ingredients</string>
+    <string name="recipes_missing_ingredients">Missing:</string>
+    <string name="minutes">min</string>
+    <string name="people">people</string>
+
+    <!-- ═════════════ 10 Algerian Recipes 🇩🇿 ═════════════ -->
+
+    <!-- 1) Chakhchoukha -->
+    <string name="recipe_chakhchoukha">Algerian Chakhchoukha</string>
+    <string name="recipe_chakhchoukha_desc">Festive Algerian dish with bread, meat and broth</string>
+    <string name="recipe_chakhchoukha_step_1">Prepare and bake the dough then tear into pieces</string>
+    <string name="recipe_chakhchoukha_step_2">Cook meat with chickpeas, tomato and onion</string>
+    <string name="recipe_chakhchoukha_step_3">Add spices and let broth thicken</string>
+    <string name="recipe_chakhchoukha_step_4">Place bread in dish and pour broth with meat over it</string>
+
+    <!-- 2) Algerian Tajine -->
+    <string name="recipe_tajine_algerian">Algerian Chicken Tajine</string>
+    <string name="recipe_tajine_algerian_desc">Chicken, potatoes, eggs and olives</string>
+    <string name="recipe_tajine_algerian_step_1">Fry chicken with onion and tomato</string>
+    <string name="recipe_tajine_algerian_step_2">Add potatoes and spices, cook until tender</string>
+    <string name="recipe_tajine_algerian_step_3">Add eggs and olives, bake in oven</string>
+
+    <!-- 3) Harira -->
+    <string name="recipe_harira">Algerian Harira</string>
+    <string name="recipe_harira_desc">Thick Algerian soup with lentils, chickpeas and meat</string>
+    <string name="recipe_harira_step_1">Soak chickpeas and lentils overnight</string>
+    <string name="recipe_harira_step_2">Cook meat with tomato and onion</string>
+    <string name="recipe_harira_step_3">Add chickpeas, lentils and couscous, let cook</string>
+
+    <!-- 4) Bourek -->
+    <string name="recipe_bourek">Bourek with meat</string>
+    <string name="recipe_bourek_desc">Crispy rolls stuffed with minced meat and egg</string>
+    <string name="recipe_bourek_step_1">Cook minced meat with onion and egg</string>
+    <string name="recipe_bourek_step_2">Roll dough and cut into rectangles</string>
+    <string name="recipe_bourek_step_3">Stuff, roll and fry in hot oil</string>
+
+    <!-- 5) Chtitha -->
+    <string name="recipe_cthitha">Chtitha with chickpeas</string>
+    <string name="recipe_cthitha_desc">Chicken in spicy red sauce with chickpeas and garlic</string>
+    <string name="recipe_cthitha_step_1">Fry chicken with garlic, tomato and spices</string>
+    <string name="recipe_cthitha_step_2">Add boiled chickpeas and let cook</string>
+    <string name="recipe_cthitha_step_3">Serve hot with Algerian bread</string>
+
+    <!-- 6) Mtewem -->
+    <string name="recipe_mtewem">Mtewem</string>
+    <string name="recipe_mtewem_desc">Meatballs in garlic-lemon-almond sauce</string>
+    <string name="recipe_mtewem_step_1">Shape meatballs from minced meat</string>
+    <string name="recipe_mtewem_step_2">Fry then add chickpeas, garlic and lemon</string>
+    <string name="recipe_mtewem_step_3">Garnish with toasted almonds and serve</string>
+
+    <!-- 7) Frik Soup -->
+    <string name="recipe_frik_soup">Frik Soup</string>
+    <string name="recipe_frik_soup_desc">Algerian soup with frik, meat and chickpeas</string>
+    <string name="recipe_frik_soup_step_1">Boil meat with onion and tomato</string>
+    <string name="recipe_frik_soup_step_2">Add chickpeas and frik</string>
+    <string name="recipe_frik_soup_step_3">Let simmer on low heat for 30 minutes</string>
+
+    <!-- 8) Algerian Couscous -->
+    <string name="recipe_couscous_algerian">Algerian Couscous</string>
+    <string name="recipe_couscous_algerian_desc">Algerian national dish with meat and vegetables</string>
+    <string name="recipe_couscous_algerian_step_1">Steam the couscous</string>
+    <string name="recipe_couscous_algerian_step_2">Prepare meat broth with vegetables and chickpeas</string>
+    <string name="recipe_couscous_algerian_step_3">Serve couscous with broth, meat and vegetables</string>
+
+    <!-- 9) Barbouche -->
+    <string name="recipe_barbouche">Barbouche (Semolina dessert)</string>
+    <string name="recipe_barbouche_desc">Algerian dessert with semolina and honey</string>
+    <string name="recipe_barbouche_step_1">Mix semolina with butter or oil</string>
+    <string name="recipe_barbouche_step_2">Bake until golden</string>
+    <string name="recipe_barbouche_step_3">Pour hot honey or sugar syrup over it</string>
+
+    <!-- 10) Zlabia -->
+    <string name="recipe_zlabia">Zlabia</string>
+    <string name="recipe_zlabia_desc">Crispy Algerian dessert with honey</string>
+    <string name="recipe_zlabia_step_1">Prepare liquid dough and let it ferment</string>
+    <string name="recipe_zlabia_step_2">Pour into hot oil in circular shape</string>
+    <string name="recipe_zlabia_step_3">Pour sugar syrup or honey over it</string>
+
+    <!-- ═════════════ Ingredients ═════════════ -->
+    <string name="ingredient_lamb">Meat</string>
+    <string name="ingredient_rice">Rice</string>
+    <string name="ingredient_yogurt">Yogurt</string>
+    <string name="ingredient_bread">Bread</string>
+    <string name="ingredient_almonds">Almonds</string>
+    <string name="ingredient_pine_nuts">Pine nuts</string>
+    <string name="ingredient_couscous">Couscous / Frik</string>
+    <string name="ingredient_vegetables">Vegetables</string>
+    <string name="ingredient_chickpeas">Chickpeas</string>
+    <string name="ingredient_onion">Onion</string>
+    <string name="ingredient_olive_oil">Oil</string>
+    <string name="ingredient_spices">Spices</string>
+    <string name="ingredient_eggplant">Eggplant</string>
+    <string name="ingredient_chicken">Chicken</string>
+    <string name="ingredient_tomato">Tomato</string>
+    <string name="ingredient_garlic">Garlic</string>
+    <string name="ingredient_lemon">Lemon</string>
+    <string name="ingredient_salt">Salt</string>
+    <string name="ingredient_beans">Beans</string>
+    <string name="ingredient_minced_meat">Minced meat</string>
+    <string name="ingredient_nuts">Nuts</string>
+    <string name="ingredient_flour">Flour / Semolina</string>
+    <string name="ingredient_cheese">Cheese</string>
+    <string name="ingredient_potato">Potato</string>
+    <string name="ingredient_eggs">Eggs</string>
+    <string name="ingredient_lentils">Lentils</string>
+    <string name="ingredient_honey">Honey</string>
+    <string name="ingredient_sugar">Sugar</string>
+
+    <!-- ═════════════ Food item statuses (D1) ═════════════ -->
+    <string name="status_available">Available</string>
+    <string name="status_in_use">In use</string>
+    <string name="status_finished">Fully consumed</string>
+    <string name="status_discarded">Discarded</string>
+    <string name="status_expired">Expired</string>
+
+    <!-- ═════════════ Food actions (D5) ═════════════ -->
+    <string name="action_use">Use part</string>
+    <string name="action_finish">Finished</string>
+    <string name="action_discard">Discard</string>
+    <string name="action_no_actions_available">No actions available for this food</string>
+    <string name="choose_use_amount">Choose amount to consume</string>
+    <string name="use_full">Full</string>
+    <string name="confirm_use">Confirm use</string>
+    <string name="back">Back</string>
+    <string name="quantity_remaining">Remaining quantity</string>
+    <string name="expiry_date">Expiry date</string>
+    <string name="storage_location_label">Location</string>
+
+    <!-- ═════════════ Hints (Hint banner) ═════════════ -->
+    <string name="hint_tap_card">Tap any card for more actions (Use / Finish / Discard)</string>
+
+    <!-- ═════════════ Extra buttons (E2) ═════════════ -->
+    <string name="action_repurchase">Repurchase</string>
+    <string name="section_main_actions">Main actions</string>
+    <string name="section_extra_actions">Extra actions</string>
+    <string name="edit_title">Edit food data</string>
+    <string name="quantity_label">Original quantity</string>
+    <string name="expiry_label">Expiry date</string>
+    <string name="location_label">Location</string>
+    <string name="save_edit">Save edit</string>
+    <string name="confirm_delete_title">Confirm delete</string>
+    <string name="confirm_delete_message">Are you sure? The food will be permanently deleted from the database.</string>
 </resources>

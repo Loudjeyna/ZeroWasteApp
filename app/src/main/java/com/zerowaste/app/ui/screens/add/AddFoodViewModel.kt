@@ -41,7 +41,16 @@ class AddFoodViewModel @Inject constructor(
 
     // ── اختيار الفئة ──
     fun onCategorySelected(category: FoodCategory) {
-        _uiState.update { it.copy(category = category, foodId = null) } // إعادة ضبط الطعام
+        // ✅ اقتراح ذكي: نضبط مكان التخزين الافتراضي لهذه الفئة تلقائياً
+        // مثلاً: إذا اختار "ألبان" → نضبط "ثلاجة" تلقائياً
+        // المستخدم يمكنه تغييرها يدوياً بعد ذلك
+        _uiState.update {
+            it.copy(
+                category = category,
+                foodId = null,  // إعادة ضبط الطعام
+                location = category.defaultLocation  // ⭐ اقتراح ذكي
+            )
+        }
     }
 
     // ── اختيار الطعام ──
@@ -64,6 +73,13 @@ class AddFoodViewModel @Inject constructor(
 
     fun onQuantityReset() {
         _uiState.update { it.copy(quantity = 1) }
+    }
+
+    // ✅ اختيار سريع للكمية (شيبس بالأرقام بدل +/- فقط)
+    fun onQuantitySelected(value: Int) {
+        _uiState.update {
+            if (value in 1..999) it.copy(quantity = value) else it
+        }
     }
 
     // ── اختيار الوحدة ──

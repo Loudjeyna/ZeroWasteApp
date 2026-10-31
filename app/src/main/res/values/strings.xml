@@ -26,10 +26,10 @@
     <!-- ═════════════ شاشة المخزون ═════════════ -->
     <string name="inventory_title">مخزوني</string>
     <string name="inventory_empty">المخزون فارغ حالياً\nاضغط زر الإضافة لإضافة طعام جديد</string>
-    <string name="inventory_filter_all">الكل</string>
+    <string name="inventory_filter_all">النشط</string>
     <string name="inventory_filter_expiring">قريب الانتهاء</string>
-    <string name="inventory_filter_expired">منتهي</string>
-    <string name="inventory_filter_fresh">طازج</string>
+    <string name="inventory_filter_expired">منتهي الصلاحية</string>
+    <string name="inventory_filter_history">السجل</string>
     <string name="inventory_search_hint">ابحث في المخزون…</string>
     <string name="inventory_count_total">إجمالي العناصر: %1$d</string>
     <string name="inventory_count_expiring">قريب الانتهاء: %1$d</string>
@@ -248,6 +248,8 @@
     <string name="unit_gram_symbol">غ</string>
     <string name="unit_liter">لتر</string>
     <string name="unit_liter_symbol">ل</string>
+    <string name="unit_milliliter">مليلتر</string>
+    <string name="unit_milliliter_symbol">مل</string>
     <string name="unit_pack">علبة</string>
     <string name="unit_pack_symbol">علبة</string>
     <string name="unit_dozen">دزينة</string>
@@ -275,4 +277,152 @@
     <string name="add_step_5">5. المكان</string>
     <string name="add_quantity_decrease">نقص</string>
     <string name="add_quantity_increase">زد</string>
+    <string name="smart_suggestion">اقتراح ذكي</string>
+    <string name="unit_label">الوحدة</string>
+
+    <!-- ═════════════ شاشة الوصفات ═════════════ -->
+    <string name="recipes_filter_all">الكل</string>
+    <string name="recipes_filter_cookable">ما يمكنني طبخه الآن</string>
+    <string name="recipes_filter_partial">ناقصة</string>
+    <string name="recipes_missing_ingredients">ينقصك:</string>
+    <string name="minutes">دقيقة</string>
+    <string name="people">أشخاص</string>
+
+    <!-- ═════════════ الوصفات الجزائرية العشر 🇩🇿 ═════════════ -->
+
+    <!-- 1) الشخشوخة -->
+    <string name="recipe_chakhchoukha">الشخشوخة الجزائرية</string>
+    <string name="recipe_chakhchoukha_desc">طبق احتفالي جزائري بالخبز واللحم والمرق</string>
+    <string name="recipe_chakhchoukha_step_1">حضّر العجين واخبزه ثم قطّعه قطعاً صغيرة</string>
+    <string name="recipe_chakhchoukha_step_2">اطبخ اللحم مع الحمص والطماطم والبصل</string>
+    <string name="recipe_chakhchoukha_step_3">أضف البهارات واترك المرق يثخُن</string>
+    <string name="recipe_chakhchoukha_step_4">ضع الخبز في طبق واسكب عليه المرق واللحم</string>
+
+    <!-- 2) الطاجين الجزائري -->
+    <string name="recipe_tajine_algerian">الطاجين الجزائري بالدجاج</string>
+    <string name="recipe_tajine_algerian_desc">دجاج وبطاطس وبيض وزيتون</string>
+    <string name="recipe_tajine_algerian_step_1">اقلِ الدجاج مع البصل والطماطم</string>
+    <string name="recipe_tajine_algerian_step_2">أضف البطاطس والبهارات واطبخ حتى تنضج</string>
+    <string name="recipe_tajine_algerian_step_3">أضف البيض والزيتون واتكبه في الفرن</string>
+
+    <!-- 3) الحريرة -->
+    <string name="recipe_harira">الحريرة الجزائرية</string>
+    <string name="recipe_harira_desc">شربة جزائرية كثيفة بالعدس والحمص واللحم</string>
+    <string name="recipe_harira_step_1">انقع الحمص والعدس ليلة</string>
+    <string name="recipe_harira_step_2">اطبخ اللحم مع الطماطم والبصل</string>
+    <string name="recipe_harira_step_3">أضف الحمص والعدس والكسكسي واتركها تطبخ</string>
+
+    <!-- 4) البوراك -->
+    <string name="recipe_bourek">البوراك باللحم</string>
+    <string name="recipe_bourek_desc">لفائف مقرمشة محشوة باللحم المفروم والبيض</string>
+    <string name="recipe_bourek_step_1">اطبخ اللحم المفروم مع البصل والبيض</string>
+    <string name="recipe_bourek_step_2">افرد العجين وقطّعه لمستطيلات</string>
+    <string name="recipe_bourek_step_3">حشّيها ولفّها ثم اقليها في الزيت الساخن</string>
+
+    <!-- 5) الشطيطة -->
+    <string name="recipe_cthitha">الشطيطة بالحمص</string>
+    <string name="recipe_cthitha_desc">دجاج في صلصة حمراء حارة بالحمص والثوم</string>
+    <string name="recipe_cthitha_step_1">اقلِ الدجاج مع الثوم والطماطم والبهارات</string>
+    <string name="recipe_cthitha_step_2">أضف الحمص المسلوق واتركه يطبخ</string>
+    <string name="recipe_cthitha_step_3">قدّمها ساخنة مع الخبز الجزائري</string>
+
+    <!-- 6) المتوّم -->
+    <string name="recipe_mtewem">المتوّم</string>
+    <string name="recipe_mtewem_desc">كرات لحم في صلصة الثوم والليمون واللوز</string>
+    <string name="recipe_mtewem_step_1">شكّل كرات من اللحم المفروم</string>
+    <string name="recipe_mtewem_step_2">اقلِها ثم أضف الحمص والثوم والليمون</string>
+    <string name="recipe_mtewem_step_3">زيّن باللوز المحمّص وقدّمها</string>
+
+    <!-- 7) شربة فريك -->
+    <string name="recipe_frik_soup">شربة فريك</string>
+    <string name="recipe_frik_soup_desc">شربة جزائرية بالفريك واللحم والحمص</string>
+    <string name="recipe_frik_soup_step_1">اسلق اللحم مع البصل والطماطم</string>
+    <string name="recipe_frik_soup_step_2">أضف الحمص والفريك</string>
+    <string name="recipe_frik_soup_step_3">اتركها تطبخ على نار هادئة 30 دقيقة</string>
+
+    <!-- 8) الكسكسي الجزائري -->
+    <string name="recipe_couscous_algerian">الكسكسي الجزائري</string>
+    <string name="recipe_couscous_algerian_desc">الطبق الوطني الجزائري باللحم والخضار</string>
+    <string name="recipe_couscous_algerian_step_1">اطبخ الكسكسي على البخار</string>
+    <string name="recipe_couscous_algerian_step_2">حضّر مرق اللحم مع الخضار والحمص</string>
+    <string name="recipe_couscous_algerian_step_3">قدّم الكسكسي مع المرق واللحم والخضار</string>
+
+    <!-- 9) البربوشة -->
+    <string name="recipe_barbouche">البربوشة (حلوى السميد)</string>
+    <string name="recipe_barbouche_desc">حلوى جزائرية بالسميد والعسل</string>
+    <string name="recipe_barbouche_step_1">اخلط السميد مع الزبدة أو الزيت</string>
+    <string name="recipe_barbouche_step_2">اخبزها حتى تتحمّر</string>
+    <string name="recipe_barbouche_step_3">اسكب عليها العسل أو شراب السكر الساخن</string>
+
+    <!-- 10) الزلابية -->
+    <string name="recipe_zlabia">الزلابية</string>
+    <string name="recipe_zlabia_desc">حلوى جزائرية مقرمشة بالعسل</string>
+    <string name="recipe_zlabia_step_1">حضّر العجينة السائلة واتركها تختمر</string>
+    <string name="recipe_zlabia_step_2">اسكبها في الزيت الساخن بشكل دائري</string>
+    <string name="recipe_zlabia_step_3">اسكب عليها شراب السكر أو العسل</string>
+
+    <!-- ═════════════ المكوّنات ═════════════ -->
+    <string name="ingredient_lamb">لحم</string>
+    <string name="ingredient_rice">أرز</string>
+    <string name="ingredient_yogurt">لبن</string>
+    <string name="ingredient_bread">خبز</string>
+    <string name="ingredient_almonds">لوز</string>
+    <string name="ingredient_pine_nuts">صنوبر</string>
+    <string name="ingredient_couscous">كسكسي / فريك</string>
+    <string name="ingredient_vegetables">خضار</string>
+    <string name="ingredient_chickpeas">حمص</string>
+    <string name="ingredient_onion">بصل</string>
+    <string name="ingredient_olive_oil">زيت</string>
+    <string name="ingredient_spices">بهارات</string>
+    <string name="ingredient_eggplant">باذنجان</string>
+    <string name="ingredient_chicken">دجاج</string>
+    <string name="ingredient_tomato">طماطم</string>
+    <string name="ingredient_garlic">ثوم</string>
+    <string name="ingredient_lemon">ليمون</string>
+    <string name="ingredient_salt">ملح</string>
+    <string name="ingredient_beans">فول</string>
+    <string name="ingredient_minced_meat">لحم مفروم</string>
+    <string name="ingredient_nuts">مكسرات</string>
+    <string name="ingredient_flour">دقيق / سميد</string>
+    <string name="ingredient_cheese">جبن</string>
+    <string name="ingredient_potato">بطاطس</string>
+    <string name="ingredient_eggs">بيض</string>
+    <string name="ingredient_lentils">عدس</string>
+    <string name="ingredient_honey">عسل</string>
+    <string name="ingredient_sugar">سكر</string>
+
+    <!-- ═════════════ حالات الطعام (D1) ═════════════ -->
+    <string name="status_available">متاح</string>
+    <string name="status_in_use">قيد الاستخدام</string>
+    <string name="status_finished">استُهلك كاملاً</string>
+    <string name="status_discarded">تخلّص منه</string>
+    <string name="status_expired">انتهت صلاحيته</string>
+
+    <!-- ═════════════ إجراءات الطعام (D5) ═════════════ -->
+    <string name="action_use">استهلاك جزء</string>
+    <string name="action_finish">انتهى كاملاً</string>
+    <string name="action_discard">تخلص منه</string>
+    <string name="action_no_actions_available">لا توجد إجراءات متاحة لهذا الطعام</string>
+    <string name="choose_use_amount">اختر كمية الاستهلاك</string>
+    <string name="use_full">كامل</string>
+    <string name="confirm_use">تأكيد الاستهلاك</string>
+    <string name="back">رجوع</string>
+    <string name="quantity_remaining">الكمية المتبقية</string>
+    <string name="expiry_date">تاريخ الانتهاء</string>
+    <string name="storage_location_label">المكان</string>
+
+    <!-- ═════════════ التلميحات (Hint banner) ═════════════ -->
+    <string name="hint_tap_card">اضغط على أي بطاقة لإجراءات أكثر (استهلاك / انتهى / تخلص)</string>
+
+    <!-- ═════════════ أزرار إضافية (E2) ═════════════ -->
+    <string name="action_repurchase">إعادة شراء</string>
+    <string name="section_main_actions">الإجراءات الأساسية</string>
+    <string name="section_extra_actions">إجراءات إضافية</string>
+    <string name="edit_title">تعديل بيانات الطعام</string>
+    <string name="quantity_label">الكمية الأصلية</string>
+    <string name="expiry_label">تاريخ الانتهاء</string>
+    <string name="location_label">المكان</string>
+    <string name="save_edit">حفظ التعديل</string>
+    <string name="confirm_delete_title">تأكيد الحذف</string>
+    <string name="confirm_delete_message">هل أنت متأكد؟ سيتم حذف الطعام نهائيًا من قاعدة البيانات.</string>
 </resources>

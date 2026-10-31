@@ -16,7 +16,7 @@ import com.zerowaste.app.data.model.FoodItem
  */
 @Database(
     entities = [FoodItem::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class ZeroWasteDatabase : RoomDatabase() {
