@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — backup_rules (Android 11 وأقدم)
+-->
+<full-backup-content>
+    <include domain="database" path="zerowaste.db" />
+    <include domain="sharedpref" path="." />
+</full-backup-content>

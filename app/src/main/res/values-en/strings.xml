@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — strings.xml (English - /values-en)
+-->
+<resources>
+    <!-- ═════════════ App ═════════════ -->
+    <string name="app_name">ZeroWaste</string>
+    <string name="app_tagline">Don\'t waste your food</string>
+
+    <!-- ═════════════ Tabs ═════════════ -->
+    <string name="tab_inventory">Inventory</string>
+    <string name="tab_recipes">Recipes</string>
+    <string name="tab_add">Add</string>
+    <string name="tab_shopping">Shopping</string>
+    <string name="tab_settings">Settings</string>
+
+    <!-- ═════════════ Notification channels ═════════════ -->
+    <string name="channel_critical_name">Critical alerts</string>
+    <string name="channel_critical_desc">Alert when food has expired</string>
+    <string name="channel_warning_name">Expiry warnings</string>
+    <string name="channel_warning_desc">Alert one day before expiry</string>
+    <string name="channel_info_name">Daily reminders</string>
+    <string name="channel_info_desc">Daily summary of your inventory</string>
+
+    <!-- ═════════════ Inventory ═════════════ -->
+    <string name="inventory_title">My Inventory</string>
+    <string name="inventory_empty">Inventory is empty\nTap the Add button to add food</string>
+    <string name="inventory_filter_all">All</string>
+    <string name="inventory_filter_expiring">Expiring soon</string>
+    <string name="inventory_filter_expired">Expired</string>
+    <string name="inventory_filter_fresh">Fresh</string>
+    <string name="inventory_search_hint">Search inventory…</string>
+    <string name="inventory_count_total">Total items: %1$d</string>
+    <string name="inventory_count_expiring">Expiring soon: %1$d</string>
+    <string name="inventory_count_expired">Expired: %1$d</string>
+
+    <!-- ═════════════ Add Food ═════════════ -->
+    <string name="add_food_title">Add new food</string>
+    <string name="add_food_step_category">Choose food category</string>
+    <string name="add_food_step_food_type">Choose food item</string>
+    <string name="add_food_step_quantity">Set quantity</string>
+    <string name="add_food_step_expiry">Choose expiry date</string>
+    <string name="add_food_step_location">Storage location</string>
+    <string name="add_food_save">Save food</string>
+    <string name="add_food_cancel">Cancel</string>
+
+    <!-- Categories -->
+    <string name="category_fruits">Fruits</string>
+    <string name="category_vegetables">Vegetables</string>
+    <string name="category_dairy">Dairy &amp; Cheese</string>
+    <string name="category_meat">Meat &amp; Fish</string>
+    <string name="category_bakery">Bakery</string>
+    <string name="category_grains">Grains &amp; Legumes</string>
+    <string name="category_beverages">Beverages</string>
+    <string name="category_snacks">Snacks</string>
+    <string name="category_condiments">Condiments &amp; Sauces</string>
+    <string name="category_frozen">Frozen</string>
+    <string name="category_other">Other</string>
+
+    <!-- Storage locations -->
+    <string name="location_fridge">Fridge</string>
+    <string name="location_freezer">Freezer</string>
+    <string name="location_pantry">Pantry</string>
+    <string name="location_counter">Counter</string>
+
+    <!-- ═════════════ Recipes ═════════════ -->
+    <string name="recipes_title">Arabic Recipes</string>
+    <string name="recipes_match_smart">Smart match</string>
+    <string name="recipes_match_full">Full match ✓</string>
+    <string name="recipes_match_partial">Missing %1$d ingredients</string>
+    <string name="recipes_match_none">No ingredients available</string>
+    <string name="recipes_search_hint">Search recipe…</string>
+    <string name="recipes_filter_available">What I can cook now</string>
+    <string name="recipes_ingredients">Ingredients</string>
+    <string name="recipes_steps">Steps</string>
+    <string name="recipes_add_to_shopping">Add missing to shopping list</string>
+
+    <!-- ═════════════ Shopping ═════════════ -->
+    <string name="shopping_title">Shopping List</string>
+    <string name="shopping_empty">List is empty</string>
+    <string name="shopping_grouped_by">Grouped by: %1$s</string>
+    <string name="shopping_group_by_category">Category</string>
+    <string name="shopping_group_by_store">Store</string>
+    <string name="shopping_group_by_priority">Priority</string>
+    <string name="shopping_add_quick">Quick add</string>
+    <string name="shopping_clear_checked">Clear checked</string>
+    <string name="shopping_share">Share list</string>
+
+    <!-- ═════════════ Settings ═════════════ -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_general">General</string>
+    <string name="settings_section_notifications">Notifications</string>
+    <string name="settings_section_appearance">Appearance</string>
+    <string name="settings_section_about">About</string>
+
+    <string name="settings_language">Language</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_system">Follow system</string>
+
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_system">System</string>
+
+    <string name="settings_dynamic_color">Dynamic Material You colors</string>
+    <string name="settings_dynamic_color_desc">Use colors from your wallpaper</string>
+
+    <string name="settings_notifications_enabled">Enable notifications</string>
+    <string name="settings_notify_days_before">Notify (days) before</string>
+    <string name="settings_notify_time">Daily reminder time</string>
+    <string name="settings_notify_sound">Notification sound</string>
+    <string name="settings_notify_vibration">Vibration</string>
+
+    <string name="settings_about_version">Version</string>
+    <string name="settings_about_rate">Rate app</string>
+    <string name="settings_about_share">Share with friend</string>
+
+    <!-- ═════════════ Common actions ═════════════ -->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_share">Share</string>
+    <string name="action_close">Close</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
+    <string name="action_confirm">Confirm</string>
+
+    <!-- ═════════════ Messages ═════════════ -->
+    <string name="msg_food_added">Food added successfully ✓</string>
+    <string name="msg_food_deleted">Food deleted</string>
+    <string name="msg_confirm_delete">Are you sure to delete?</string>
+    <string name="msg_select_category_first">Choose food category first</string>
+    <string name="msg_added_to_shopping">Added to shopping list</string>
+
+    <!-- ═════════════ Food names ═════════════ -->
+    <!-- Fruits -->
+    <string name="food_apple">Apple</string>
+    <string name="food_banana">Banana</string>
+    <string name="food_orange">Orange</string>
+    <string name="food_strawberry">Strawberry</string>
+    <string name="food_grapes">Grapes</string>
+    <string name="food_watermelon">Watermelon</string>
+    <string name="food_lemon">Lemon</string>
+    <string name="food_avocado">Avocado</string>
+    <string name="food_mango">Mango</string>
+    <string name="food_pear">Pear</string>
+
+    <!-- Vegetables -->
+    <string name="food_tomato">Tomato</string>
+    <string name="food_cucumber">Cucumber</string>
+    <string name="food_carrot">Carrot</string>
+    <string name="food_onion">Onion</string>
+    <string name="food_potato">Potato</string>
+    <string name="food_lettuce">Lettuce</string>
+    <string name="food_pepper">Pepper</string>
+    <string name="food_eggplant">Eggplant</string>
+    <string name="food_spinach">Spinach</string>
+    <string name="food_garlic">Garlic</string>
+
+    <!-- Dairy -->
+    <string name="food_milk">Milk</string>
+    <string name="food_yogurt">Yogurt</string>
+    <string name="food_cheese_white">White Cheese</string>
+    <string name="food_cheese_yellow">Yellow Cheese</string>
+    <string name="food_butter">Butter</string>
+    <string name="food_cream">Cream</string>
+    <string name="food_labneh">Labneh</string>
+    <string name="food_eggs">Eggs</string>
+
+    <!-- Meat -->
+    <string name="food_chicken">Chicken</string>
+    <string name="food_beef">Beef</string>
+    <string name="food_lamb">Lamb</string>
+    <string name="food_fish">Fish</string>
+    <string name="food_shrimp">Shrimp</string>
+    <string name="food_minced_meat">Minced Meat</string>
+    <string name="food_turkey">Turkey</string>
+
+    <!-- Bakery -->
+    <string name="food_bread_white">White Bread</string>
+    <string name="food_bread_arabic">Arabic Bread</string>
+    <string name="food_bread_whole">Whole Bread</string>
+    <string name="food_croissant">Croissant</string>
+    <string name="food_baguette">Baguette</string>
+    <string name="food_tortilla">Tortilla</string>
+    <string name="food_bun">Bun</string>
+
+    <!-- Grains -->
+    <string name="food_rice">Rice</string>
+    <string name="food_pasta">Pasta</string>
+    <string name="food_flour">Flour</string>
+    <string name="food_oats">Oats</string>
+    <string name="food_lentils">Lentils</string>
+    <string name="food_chickpeas">Chickpeas</string>
+    <string name="food_beans">Beans</string>
+    <string name="food_quinoa">Quinoa</string>
+    <string name="food_couscous">Couscous</string>
+
+    <!-- Beverages -->
+    <string name="food_water">Water</string>
+    <string name="food_juice_orange">Orange Juice</string>
+    <string name="food_juice_apple">Apple Juice</string>
+    <string name="food_soda">Soda</string>
+    <string name="food_tea">Tea</string>
+    <string name="food_coffee_drink">Coffee</string>
+    <string name="food_milk_drink">Milk</string>
+
+    <!-- Snacks -->
+    <string name="food_chips">Chips</string>
+    <string name="food_chocolate">Chocolate</string>
+    <string name="food_candy">Candy</string>
+    <string name="food_cookies">Cookies</string>
+    <string name="food_crackers">Crackers</string>
+    <string name="food_nuts">Nuts</string>
+    <string name="food_popcorn">Popcorn</string>
+
+    <!-- Condiments -->
+    <string name="food_salt">Salt</string>
+    <string name="food_sugar">Sugar</string>
+    <string name="food_olive_oil">Olive Oil</string>
+    <string name="food_vinegar">Vinegar</string>
+    <string name="food_ketchup">Ketchup</string>
+    <string name="food_mayo">Mayonnaise</string>
+    <string name="food_mustard">Mustard</string>
+    <string name="food_soy_sauce">Soy Sauce</string>
+    <string name="food_honey">Honey</string>
+    <string name="food_jam">Jam</string>
+
+    <!-- Frozen -->
+    <string name="food_ice_cream">Ice Cream</string>
+    <string name="food_frozen_veg">Frozen Vegetables</string>
+    <string name="food_frozen_fries">Frozen Fries</string>
+    <string name="food_frozen_pizza">Frozen Pizza</string>
+    <string name="food_frozen_burger">Frozen Burger</string>
+
+    <!-- Other -->
+    <string name="food_custom">Other food</string>
+
+    <!-- ═════════════ Quantity units ═════════════ -->
+    <string name="unit_piece">Piece</string>
+    <string name="unit_piece_symbol">pc</string>
+    <string name="unit_kilo">Kilo</string>
+    <string name="unit_kilo_symbol">kg</string>
+    <string name="unit_gram">Gram</string>
+    <string name="unit_gram_symbol">g</string>
+    <string name="unit_liter">Liter</string>
+    <string name="unit_liter_symbol">L</string>
+    <string name="unit_pack">Pack</string>
+    <string name="unit_pack_symbol">pack</string>
+    <string name="unit_dozen">Dozen</string>
+    <string name="unit_dozen_symbol">dz</string>
+    <string name="unit_box">Box</string>
+    <string name="unit_box_symbol">box</string>
+    <string name="unit_bottle">Bottle</string>
+    <string name="unit_bottle_symbol">btl</string>
+
+    <!-- ═════════════ Expiry presets ═════════════ -->
+    <string name="expiry_today">Today</string>
+    <string name="expiry_3days">In 3 days</string>
+    <string name="expiry_1week">In 1 week</string>
+    <string name="expiry_2weeks">In 2 weeks</string>
+    <string name="expiry_1month">In 1 month</string>
+    <string name="expiry_3months">In 3 months</string>
+    <string name="expiry_6months">In 6 months</string>
+    <string name="expiry_1year">In 1 year</string>
+
+    <!-- ═════════════ Add screen steps ═════════════ -->
+    <string name="add_step_1">1. Category</string>
+    <string name="add_step_2">2. Item</string>
+    <string name="add_step_3">3. Quantity</string>
+    <string name="add_step_4">4. Expiry</string>
+    <string name="add_step_5">5. Location</string>
+    <string name="add_quantity_decrease">Decrease</string>
+    <string name="add_quantity_increase">Increase</string>
+</resources>

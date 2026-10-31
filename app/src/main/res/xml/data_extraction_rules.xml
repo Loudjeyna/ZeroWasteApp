@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — backup_rules.xml (Android 12+)
+    يحدد ما الذي يُحفظ في النسخة الاحتياطية السحابية
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- نحفظ قاعدة بيانات الأطعمة والوصفات -->
+        <include domain="database" path="zerowaste.db" />
+        <!-- نحفظ التفضيلات المشتركة (الإعدادات، اللغة، الوضع الليلي) -->
+        <include domain="sharedpref" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="database" path="zerowaste.db" />
+        <include domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

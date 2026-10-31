@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — Google Fonts Certificates
+    مطلوبة لتنزيل الخطوط عبر Google Fonts Provider
+-->
+<resources>
+    <string-array name="com_google_android_gms_fonts_certs">
+        <!-- شهادات Google Play Services الحالية (تُحدَّث دورياً) -->
+        <item>MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAZ1PER2S5Ace87q2jPYyfThTpvYk2vEpO6XBaOzdM1Jab9Tf5L4vRnncvvL6vwAniFtgn7Q0B3pqMgiWvR4W3kgtLjL3whUZJQm9yw4Y7Q8YSE2P4NiUkLMx4v3K+cKEHE5K0OEUckZ6PyYxL1+y4ZmWruZX0AFkxv7GVbcGAQG3nfARUUq9K4h3qSAjquQhe2v9QQ7aVZnfiiGC3xa2YxC5Kbssu2AQhH3DnPywpTEyB8Kw5X6mBK5jwNb200Fz4UtZj0oMjAULNjiy0u0j7xgkqmc9jRQpo5ax4ARAf3uQ2nU4U2jc9m9R3aPj7VL2yHqK4QXGa69z9GG1fQr2ZjR2u4g9vYX3Rn5d3FhYrYb1Hbnvf2q3M5At0t4F7tZUL5HHo5bHvBxJ75GTg3R5EH1smQrZdPd9Nn3v2r5x5o2qf</item>
+    </string-array>
+</resources>

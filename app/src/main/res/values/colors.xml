@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- الألوان الأساسية - تتطابق مع Color.kt -->
+    <color name="primary">#FF2E7D32</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="secondary">#FF4F7C50</color>
+    <color name="tertiary">#FFE65100</color>
+    <color name="background">#FFFAFBF5</color>
+    <color name="surface">#FFFFFDF7</color>
+    <color name="error">#FFB3261E</color>
+
+    <!-- حالة الطعام -->
+    <color name="food_fresh">#FF4CAF50</color>
+    <color name="food_soon">#FFFFA726</color>
+    <color name="food_expired">#FFEF5350</color>
+    <color name="food_frozen">#FF42A5F5</color>
+
+    <!-- شاشة Splash -->
+    <color name="splash_background">#FF2E7D32</color>
+    <color name="splash_icon">#FFFFFFFF</color>
+</resources>

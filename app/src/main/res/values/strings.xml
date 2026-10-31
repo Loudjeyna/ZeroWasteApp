@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — strings.xml (الافتراضي = العربية)
+    جميع النصوص الأساسية للتطبيق
+-->
+<resources>
+    <!-- ═════════════ التطبيق ═════════════ -->
+    <string name="app_name">زيرو وايست</string>
+    <string name="app_tagline">لا تهدر طعامك</string>
+
+    <!-- ═════════════ التبويبات الخمسة (Bottom Navigation) ═════════════ -->
+    <string name="tab_inventory">المخزون</string>
+    <string name="tab_recipes">الوصفات</string>
+    <string name="tab_add">إضافة</string>
+    <string name="tab_shopping">التسوق</string>
+    <string name="tab_settings">الإعدادات</string>
+
+    <!-- ═════════════ قنوات التنبيهات ═════════════ -->
+    <string name="channel_critical_name">تنبيهات حرجة</string>
+    <string name="channel_critical_desc">تنبيه عند انتهاء صلاحية الطعام أو تجاوزها</string>
+    <string name="channel_warning_name">تحذيرات الصلاحية</string>
+    <string name="channel_warning_desc">تنبيه قبل يوم من انتهاء صلاحية الطعام</string>
+    <string name="channel_info_name">تذكيرات يومية</string>
+    <string name="channel_info_desc">ملخص يومي بما لديك في المخزون</string>
+
+    <!-- ═════════════ شاشة المخزون ═════════════ -->
+    <string name="inventory_title">مخزوني</string>
+    <string name="inventory_empty">المخزون فارغ حالياً\nاضغط زر الإضافة لإضافة طعام جديد</string>
+    <string name="inventory_filter_all">الكل</string>
+    <string name="inventory_filter_expiring">قريب الانتهاء</string>
+    <string name="inventory_filter_expired">منتهي</string>
+    <string name="inventory_filter_fresh">طازج</string>
+    <string name="inventory_search_hint">ابحث في المخزون…</string>
+    <string name="inventory_count_total">إجمالي العناصر: %1$d</string>
+    <string name="inventory_count_expiring">قريب الانتهاء: %1$d</string>
+    <string name="inventory_count_expired">منتهي: %1$d</string>
+
+    <!-- ═════════════ شاشة إضافة طعام ═════════════ -->
+    <string name="add_food_title">إضافة طعام جديد</string>
+    <string name="add_food_step_category">اختر فئة الطعام</string>
+    <string name="add_food_step_food_type">اختر نوع الطعام</string>
+    <string name="add_food_step_quantity">حدد الكمية</string>
+    <string name="add_food_step_expiry">اختر تاريخ الانتهاء</string>
+    <string name="add_food_step_location">مكان التخزين</string>
+    <string name="add_food_save">حفظ الطعام</string>
+    <string name="add_food_cancel">إلغاء</string>
+
+    <!-- فئات الطعام -->
+    <string name="category_fruits">فواكه</string>
+    <string name="category_vegetables">خضروات</string>
+    <string name="category_dairy">ألبان وأجبان</string>
+    <string name="category_meat">لحوم وأسماك</string>
+    <string name="category_bakery">مخبوزات</string>
+    <string name="category_grains">حبوب وبقول</string>
+    <string name="category_beverages">مشروبات</string>
+    <string name="category_snacks">وجبات خفيفة</string>
+    <string name="category_condiments">بهارات وصلصات</string>
+    <string name="category_frozen">مجمّدات</string>
+    <string name="category_other">أخرى</string>
+
+    <!-- أماكن التخزين -->
+    <string name="location_fridge">ثلاجة</string>
+    <string name="location_freezer">فريزر</string>
+    <string name="location_pantry">خزانة</string>
+    <string name="location_counter">كاونتر</string>
+
+    <!-- ═════════════ شاشة الوصفات ═════════════ -->
+    <string name="recipes_title">وصفات عربية</string>
+    <string name="recipes_match_smart">مطابقة ذكية</string>
+    <string name="recipes_match_full">مطابقة كاملة ✓</string>
+    <string name="recipes_match_partial">ينقصك %1$d مكوّن</string>
+    <string name="recipes_match_none">لا تملك أي مكوّن</string>
+    <string name="recipes_search_hint">ابحث عن وصفة…</string>
+    <string name="recipes_filter_available">ما يمكنني طبخه الآن</string>
+    <string name="recipes_ingredients">المكوّنات</string>
+    <string name="recipes_steps">الخطوات</string>
+    <string name="recipes_add_to_shopping">أضف الناقص إلى قائمة التسوق</string>
+
+    <!-- ═════════════ شاشة التسوق ═════════════ -->
+    <string name="shopping_title">قائمة التسوق</string>
+    <string name="shopping_empty">القائمة فارغة</string>
+    <string name="shopping_grouped_by">مجمّعة حسب: %1$s</string>
+    <string name="shopping_group_by_category">الفئة</string>
+    <string name="shopping_group_by_store">المتجر</string>
+    <string name="shopping_group_by_priority">الأولوية</string>
+    <string name="shopping_add_quick">إضافة سريعة</string>
+    <string name="shopping_clear_checked">حذف المحدّد</string>
+    <string name="shopping_share">مشاركة القائمة</string>
+
+    <!-- ═════════════ شاشة الإعدادات ═════════════ -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_section_general">عام</string>
+    <string name="settings_section_notifications">التنبيهات</string>
+    <string name="settings_section_appearance">المظهر</string>
+    <string name="settings_section_about">حول التطبيق</string>
+
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_system">حسب الجهاز</string>
+
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_theme_dark">داكن</string>
+    <string name="settings_theme_system">حسب النظام</string>
+
+    <string name="settings_dynamic_color">ألوان Material You الديناميكية</string>
+    <string name="settings_dynamic_color_desc">استخدم ألوان خلفية جهازك</string>
+
+    <string name="settings_notifications_enabled">تفعيل التنبيهات</string>
+    <string name="settings_notify_days_before">نبّه قبل (أيام)</string>
+    <string name="settings_notify_time">وقت التذكير اليومي</string>
+    <string name="settings_notify_sound">صوت التنبيه</string>
+    <string name="settings_notify_vibration">الاهتزاز</string>
+
+    <string name="settings_about_version">الإصدار</string>
+    <string name="settings_about_rate">قيّم التطبيق</string>
+    <string name="settings_about_share">شارك مع صديق</string>
+
+    <!-- ═════════════ تنبيهات شائعة ═════════════ -->
+    <string name="action_save">حفظ</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_yes">نعم</string>
+    <string name="action_no">لا</string>
+    <string name="action_confirm">تأكيد</string>
+
+    <!-- ═════════════ الرسائل ═════════════ -->
+    <string name="msg_food_added">تمت إضافة الطعام بنجاح ✓</string>
+    <string name="msg_food_deleted">تم حذف الطعام</string>
+    <string name="msg_confirm_delete">هل أنت متأكد من الحذف؟</string>
+    <string name="msg_select_category_first">اختر فئة الطعام أولاً</string>
+    <string name="msg_added_to_shopping">تمت الإضافة لقائمة التسوق</string>
+
+    <!-- ═════════════ أسماء الأطعمة الجاهزة ═════════════ -->
+    <!-- فواكه -->
+    <string name="food_apple">تفاح</string>
+    <string name="food_banana">موز</string>
+    <string name="food_orange">برتقال</string>
+    <string name="food_strawberry">فراولة</string>
+    <string name="food_grapes">عنب</string>
+    <string name="food_watermelon">بطيخ</string>
+    <string name="food_lemon">ليمون</string>
+    <string name="food_avocado">أفوكادو</string>
+    <string name="food_mango">مانجو</string>
+    <string name="food_pear">كمثرى</string>
+
+    <!-- خضروات -->
+    <string name="food_tomato">طماطم</string>
+    <string name="food_cucumber">خيار</string>
+    <string name="food_carrot">جزر</string>
+    <string name="food_onion">بصل</string>
+    <string name="food_potato">بطاطس</string>
+    <string name="food_lettuce">خس</string>
+    <string name="food_pepper">فلفل</string>
+    <string name="food_eggplant">باذنجان</string>
+    <string name="food_spinach">سبانخ</string>
+    <string name="food_garlic">ثوم</string>
+
+    <!-- ألبان وأجبان -->
+    <string name="food_milk">حليب</string>
+    <string name="food_yogurt">زبادي</string>
+    <string name="food_cheese_white">جبن بيضاء</string>
+    <string name="food_cheese_yellow">جبن أصفر</string>
+    <string name="food_butter">زبدة</string>
+    <string name="food_cream">قشدة</string>
+    <string name="food_labneh">لبنة</string>
+    <string name="food_eggs">بيض</string>
+
+    <!-- لحوم وأسماك -->
+    <string name="food_chicken">دجاج</string>
+    <string name="food_beef">لحم بقري</string>
+    <string name="food_lamb">لحم ضأن</string>
+    <string name="food_fish">سمك</string>
+    <string name="food_shrimp">روبيان</string>
+    <string name="food_minced_meat">لحم مفروم</string>
+    <string name="food_turkey">ديك رومي</string>
+
+    <!-- مخبوزات -->
+    <string name="food_bread_white">خبز أبيض</string>
+    <string name="food_bread_arabic">خبز عربي</string>
+    <string name="food_bread_whole">خبز كامل</string>
+    <string name="food_croissant">كرواسون</string>
+    <string name="food_baguette">خبز فرنسي</string>
+    <string name="food_tortilla">خبز تورتيلا</string>
+    <string name="food_bun">كعكة صغيرة</string>
+
+    <!-- حبوب وبقول -->
+    <string name="food_rice">أرز</string>
+    <string name="food_pasta">معكرونة</string>
+    <string name="food_flour">دقيق</string>
+    <string name="food_oats">شوفان</string>
+    <string name="food_lentils">عدس</string>
+    <string name="food_chickpeas">حمص</string>
+    <string name="food_beans">فاصوليا</string>
+    <string name="food_quinoa">كينوا</string>
+    <string name="food_couscous">كسكسي</string>
+
+    <!-- مشروبات -->
+    <string name="food_water">ماء</string>
+    <string name="food_juice_orange">عصير برتقال</string>
+    <string name="food_juice_apple">عصير تفاح</string>
+    <string name="food_soda">مشروب غازي</string>
+    <string name="food_tea">شاي</string>
+    <string name="food_coffee_drink">قهوة</string>
+    <string name="food_milk_drink">حليب</string>
+
+    <!-- وجبات خفيفة -->
+    <string name="food_chips">رقائق</string>
+    <string name="food_chocolate">شوكولاتة</string>
+    <string name="food_candy">حلوى</string>
+    <string name="food_cookies">بسكويت</string>
+    <string name="food_crackers">كريكر</string>
+    <string name="food_nuts">مكسرات</string>
+    <string name="food_popcorn">فشار</string>
+
+    <!-- بهارات وصلصات -->
+    <string name="food_salt">ملح</string>
+    <string name="food_sugar">سكر</string>
+    <string name="food_olive_oil">زيت زيتون</string>
+    <string name="food_vinegar">خل</string>
+    <string name="food_ketchup">كاتشب</string>
+    <string name="food_mayo">مايونيز</string>
+    <string name="food_mustard">خردل</string>
+    <string name="food_soy_sauce">صويا</string>
+    <string name="food_honey">عسل</string>
+    <string name="food_jam">مربى</string>
+
+    <!-- مجمّدات -->
+    <string name="food_ice_cream">آيس كريم</string>
+    <string name="food_frozen_veg">خضار مجمّدة</string>
+    <string name="food_frozen_fries">بطاطس مجمّدة</string>
+    <string name="food_frozen_pizza">بيتزا مجمّدة</string>
+    <string name="food_frozen_burger">برغر مجمّد</string>
+
+    <!-- أخرى -->
+    <string name="food_custom">طعام آخر</string>
+
+    <!-- ═════════════ وحدات الكمية ═════════════ -->
+    <string name="unit_piece">حبة</string>
+    <string name="unit_piece_symbol">حبة</string>
+    <string name="unit_kilo">كيلو</string>
+    <string name="unit_kilo_symbol">كغ</string>
+    <string name="unit_gram">غرام</string>
+    <string name="unit_gram_symbol">غ</string>
+    <string name="unit_liter">لتر</string>
+    <string name="unit_liter_symbol">ل</string>
+    <string name="unit_pack">علبة</string>
+    <string name="unit_pack_symbol">علبة</string>
+    <string name="unit_dozen">دزينة</string>
+    <string name="unit_dozen_symbol">دز</string>
+    <string name="unit_box">صندوق</string>
+    <string name="unit_box_symbol">صندوق</string>
+    <string name="unit_bottle">زجاجة</string>
+    <string name="unit_bottle_symbol">زجاجة</string>
+
+    <!-- ═════════════ خيارات تاريخ الانتهاء ═════════════ -->
+    <string name="expiry_today">اليوم</string>
+    <string name="expiry_3days">بعد 3 أيام</string>
+    <string name="expiry_1week">بعد أسبوع</string>
+    <string name="expiry_2weeks">بعد أسبوعين</string>
+    <string name="expiry_1month">بعد شهر</string>
+    <string name="expiry_3months">بعد 3 أشهر</string>
+    <string name="expiry_6months">بعد 6 أشهر</string>
+    <string name="expiry_1year">بعد سنة</string>
+
+    <!-- ═════════════ خطوات شاشة الإضافة ═════════════ -->
+    <string name="add_step_1">1. الفئة</string>
+    <string name="add_step_2">2. النوع</string>
+    <string name="add_step_3">3. الكمية</string>
+    <string name="add_step_4">4. الصلاحية</string>
+    <string name="add_step_5">5. المكان</string>
+    <string name="add_quantity_decrease">نقص</string>
+    <string name="add_quantity_increase">زد</string>
+</resources>

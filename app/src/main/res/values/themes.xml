@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — themes.xml
+    نقطة دخول XML التي تُحمِّل Compose Theme عبر MainActivity
+    - يوم: لون فاتح
+    - ليل: لون داكن (نُفعّله في values-night)
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- الثيم الأساسي (يُستعمل في MainActivity) -->
+    <style name="Theme.ZeroWaste" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
+    </style>
+
+    <!-- ثيم شاشة Splash (لا شريط حالة، خلفية خضراء) -->
+    <style name="Theme.ZeroWaste.Splash" parent="Theme.ZeroWaste">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@color/splash_background</item>
+        <item name="android:navigationBarColor">@color/splash_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+    </style>
+
+    <!-- Splash Screen API Theme (Android 12+) -->
+    <style name="Theme.ZeroWaste.SplashScreen" parent="Theme.ZeroWaste.Splash">
+        <!-- بدون أي مكوّن إضافي — نُبقيها بسيطة لتفادي أي اعتماد إضافي -->
+    </style>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ZeroWaste — colors.xml (Night)
+-->
+<resources>
+    <color name="primary">#FF81C784</color>
+    <color name="on_primary">#FF00390F</color>
+    <color name="secondary">#FFB7CCB1</color>
+    <color name="tertiary">#FFFFB74D</color>
+    <color name="background">#FF101510</color>
+    <color name="surface">#FF121711</color>
+    <color name="error">#FFFFB4AB</color>
+
+    <color name="food_fresh">#FF66BB6A</color>
+    <color name="food_soon">#FFFFA726</color>
+    <color name="food_expired">#FFEF5350</color>
+    <color name="food_frozen">#FF42A5F5</color>
+
+    <color name="splash_background">#FF1B5E20</color>
+    <color name="splash_icon">#FFFFFFFF</color>
+</resources>
