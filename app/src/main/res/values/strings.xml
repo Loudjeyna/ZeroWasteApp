@@ -5,7 +5,7 @@
 -->
 <resources>
     <!-- ═════════════ التطبيق ═════════════ -->
-    <string name="app_name">زيرو وايست</string>
+    <string name="app_name">قلل الهدر</string>
     <string name="app_tagline">لا تهدر طعامك</string>
 
     <!-- ═════════════ التبويبات الخمسة (Bottom Navigation) ═════════════ -->
@@ -60,7 +60,7 @@
 
     <!-- أماكن التخزين -->
     <string name="location_fridge">ثلاجة</string>
-    <string name="location_freezer">فريزر</string>
+    <string name="location_freezer">المجمد</string>
     <string name="location_pantry">خزانة</string>
     <string name="location_counter">كاونتر</string>
 
@@ -78,13 +78,13 @@
 
     <!-- ═════════════ شاشة التسوق ═════════════ -->
     <string name="shopping_title">قائمة التسوق</string>
-    <string name="shopping_empty">القائمة فارغة</string>
+    <string name="shopping_empty">القائمة فارغة\nاضغط \"إضافة سريعة\" لإضافة عنصر</string>
     <string name="shopping_grouped_by">مجمّعة حسب: %1$s</string>
     <string name="shopping_group_by_category">الفئة</string>
     <string name="shopping_group_by_store">المتجر</string>
     <string name="shopping_group_by_priority">الأولوية</string>
     <string name="shopping_add_quick">إضافة سريعة</string>
-    <string name="shopping_clear_checked">حذف المحدّد</string>
+    <string name="shopping_clear_checked">حذف المُشترى</string>
     <string name="shopping_share">مشاركة القائمة</string>
 
     <!-- ═════════════ شاشة الإعدادات ═════════════ -->
@@ -97,6 +97,7 @@
     <string name="settings_language">اللغة</string>
     <string name="settings_language_ar">العربية</string>
     <string name="settings_language_en">English</string>
+    <string name="settings_language_fr">Français</string>
     <string name="settings_language_system">حسب الجهاز</string>
 
     <string name="settings_theme">المظهر</string>
@@ -425,4 +426,40 @@
     <string name="save_edit">حفظ التعديل</string>
     <string name="confirm_delete_title">تأكيد الحذف</string>
     <string name="confirm_delete_message">هل أنت متأكد؟ سيتم حذف الطعام نهائيًا من قاعدة البيانات.</string>
+
+    <!-- ═════════════ شاشة التسوق (S) ═════════════ -->
+    <string name="shopping_count_total">الكل: %1$d</string>
+    <string name="shopping_filter_all">الكل</string>
+    <string name="shopping_filter_unchecked">غير مشترى</string>
+    <string name="shopping_filter_checked">مشترى</string>
+    <string name="shopping_search_hint">ابحث في القائمة…</string>
+    <string name="shopping_add_to_list">أضف للقائمة</string>
+    <string name="shopping_step_category">1. الفئة</string>
+    <string name="shopping_step_food">2. النوع</string>
+    <string name="shopping_step_quantity">3. الكمية</string>
+    <string name="shopping_step_unit">4. الوحدة</string>
+
+    <!-- ═════════════ شاشة الإعدادات (SE) ═════════════ -->
+    <!-- ملاحظة: settings_language_* و settings_theme_* موجودة في قسم الإعدادات القديم -->
+    <string name="settings_section_feedback">ملاحظات</string>
+    <string name="settings_feedback">إرسال ملاحظات</string>
+    <string name="settings_feedback_desc">شاركنا اقتراحاتك وشكاويك</string>
+    <string name="settings_section_danger">منطقة الخطر</string>
+    <string name="settings_danger_warning">⚠️ الإجراءات التالية لا يمكن التراجع عنها. كن حذراً.</string>
+    <string name="settings_delete_all">حذف كل البيانات</string>
+    <string name="confirm_delete_all_title_1">تأكيد أول</string>
+    <string name="confirm_delete_all_message_1">سيتم حذف كل الأطعمة وقائمة التسوق نهائياً. هل تريد المتابعة؟</string>
+    <string name="confirm_delete_all_title_2">تأكيد أخير</string>
+    <string name="confirm_delete_all_message_2">⚠️ آخر تحذير: سيتم حذف كل شيء نهائياً بدون رجعة. متأكد؟</string>
+    <string name="continue_anyway">متابعة على أي حال</string>
+    <string name="days">أيام</string>
+
+    <!-- ═════════════ الإعداد الأول + أيقونة التنبيهات ═════════════ -->
+    <string name="first_setup_title">مرحباً في قلل الهدر! 🌱</string>
+    <string name="first_setup_message">لنحافظ على طعامك معاً! متى تريد استقبال تنبيهات عن قرب انتهاء الصلاحية؟</string>
+    <string name="first_setup_later">لاحقاً</string>
+    <string name="first_setup_set_now">ضبط الآن</string>
+    <string name="notification_bell_desc">تنبيهات</string>
+    <string name="notification_summary">عناصر تحتاج انتباهاً: %1$d</string>
+    <string name="add_another">أضف آخر</string>
 </resources>

@@ -55,6 +55,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.zerowaste.app.R
 import com.zerowaste.app.data.model.RecipeMatchResult
 import com.zerowaste.app.data.model.RecipeMatchStatus
+import com.zerowaste.app.util.NumberUtils
 
 /**
  * RecipesScreen — شاشة الوصفات الكاملة
@@ -440,30 +441,15 @@ private fun RecipeCard(
                     }
                     if (match.missingIngredients.size > 4) {
                         Text(
-                            text = "+${match.missingIngredients.size - 4}",
+                            text = "+" + NumberUtils.formatInt(match.missingIngredients.size - 4),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 }
-
-                // زر "أضف الناقص لقائمة التسوق"
-                TextButton(
-                    onClick = onAddMissing,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Add,
-                        contentDescription = null,
-                        modifier = Modifier.size(16.dp),
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = stringResource(R.string.recipes_add_to_shopping),
-                        style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.SemiBold,
-                    )
-                }
+                // ✅ تم حذف زر "أضف الناقص لقائمة التسوق" بناءً على طلب المستخدم
+                // السبب: كان يضيف عناصر كثيرة لقائمة التسوق دون منطق تواجدها فعلاً في المنزل
+                // (قد تكون موجودة في المنزل لكن غير مُسجّلة في التطبيق)
             } else {
                 // مطابقة كاملة - رسالة احتفال
                 Text(

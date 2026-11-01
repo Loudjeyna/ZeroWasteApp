@@ -70,9 +70,10 @@ class FoodRepository @Inject constructor(
     fun countExpired(): Flow<Int> = foodItemDao.countExpired()
 
     /**
-     * عدد العناصر النشطة التي ستنتهي صلاحيتها خلال 3 أيام (افتراضياً)
+     * عدد العناصر النشطة التي ستنتهي صلاحيتها خلال 5 أيام (افتراضياً)
+     * العتبة محدَّثة من 3 إلى 5 أيام بناءً على طلب المستخدم
      */
-    fun countExpiring(thresholdMillis: Long = System.currentTimeMillis() + (3L * 24 * 60 * 60 * 1000)): Flow<Int> {
+    fun countExpiring(thresholdMillis: Long = System.currentTimeMillis() + (5L * 24 * 60 * 60 * 1000)): Flow<Int> {
         val now = System.currentTimeMillis()
         return foodItemDao.countExpiring(thresholdMillis, now)
     }
@@ -151,7 +152,7 @@ class FoodRepository @Inject constructor(
         val all = foodItemDao.getAll()
         val toExpire = all.filter {
             it.expiryTimestamp < now &&
-                    (it.toStatus() == FoodItemStatus.AVAILABLE || it.toStatus() == FoodItemStatus.IN_USE)
+            (it.toStatus() == FoodItemStatus.AVAILABLE || it.toStatus() == FoodItemStatus.IN_USE)
         }
         for (item in toExpire) {
             foodItemDao.updateStatus(item.id, FoodItemStatus.EXPIRED.name, now)

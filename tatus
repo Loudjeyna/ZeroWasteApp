@@ -1,0 +1,61 @@
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/AndroidManifest.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/MainActivity.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ZeroWasteApp.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/db/FoodItemDao.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/db/ZeroWasteDatabase.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/model/FoodCategory.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/model/FoodItem.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/model/StorageLocation.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/repository/FoodRepository.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/di/DatabaseModule.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/components/BadgesViewModel.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/components/ZeroWasteBottomBar.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/navigation/Route.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/navigation/ZeroWasteNavGraph.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/add/AddFoodScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/add/AddFoodViewModel.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/inventory/InventoryScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/inventory/InventoryViewModel.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/recipes/RecipesScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/settings/SettingsScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/shopping/ShoppingScreen.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/theme/Color.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/theme/Theme.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/theme/Type.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/drawable/ic_launcher_background.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/drawable/ic_launcher_foreground.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/mipmap-anydpi-v26/ic_launcher.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values/colors.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values/fonts_certs.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values/strings.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values/themes.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values-en/strings.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values-night/colors.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/values-night/themes.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/xml/backup_rules.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/res/xml/data_extraction_rules.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/model/Recipe.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/model/RecipeData.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/data/repository/RecipeRepository.kt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'C:\Users\loudj\Documents\ZeroWasteApp_Backup\app\src/main/java/com/zerowaste/app/ui/screens/recipes/RecipesViewModel.kt', LF will be replaced by CRLF the next time Git touches it
+ .../java/com/zerowaste/app/data/db/FoodItemDao.kt" | 111 [32m+[m[31m--[m
+ .../zerowaste/app/data/db/ZeroWasteDatabase.kt"    |   2 [32m+[m[31m-[m
+ .../com/zerowaste/app/data/model/FoodCategory.kt"  | 194 [32m+++[m[31m--[m
+ .../java/com/zerowaste/app/data/model/FoodItem.kt" | 126 [32m+[m[31m---[m
+ .../app/data/model/Recipe.kt" => /dev/null         |  98 [31m---[m
+ .../app/data/model/RecipeData.kt" => /dev/null     | 277 [31m-------[m
+ .../zerowaste/app/data/model/StorageLocation.kt"   |  40 [32m+[m[31m-[m
+ .../app/data/repository/FoodRepository.kt"         | 108 [32m+[m[31m--[m
+ .../repository/RecipeRepository.kt" => /dev/null   |  93 [31m---[m
+ .../app/ui/components/BadgesViewModel.kt"          |  16 [32m+[m[31m-[m
+ .../zerowaste/app/ui/screens/add/AddFoodScreen.kt" | 325 [32m+++[m[31m-----[m
+ .../app/ui/screens/add/AddFoodViewModel.kt"        |  18 [32m+[m[31m-[m
+ .../FoodActionBottomSheet.kt" => /dev/null         | 818 [31m---------------------[m
+ .../app/ui/screens/inventory/InventoryScreen.kt"   | 275 [32m+++[m[31m----[m
+ .../ui/screens/inventory/InventoryViewModel.kt"    | 216 [32m++[m[31m----[m
+ .../app/ui/screens/recipes/RecipesScreen.kt"       | 515 [32m+[m[31m------------[m
+ .../recipes/RecipesViewModel.kt" => /dev/null      | 123 [31m----[m
+ .../main/res/values/strings.xml"                   | 156 [32m+[m[31m---[m
+ .../main/res/values-en/strings.xml"                | 154 [32m+[m[31m---[m
+ 19 files changed, 452 insertions(+), 3213 deletions(-)

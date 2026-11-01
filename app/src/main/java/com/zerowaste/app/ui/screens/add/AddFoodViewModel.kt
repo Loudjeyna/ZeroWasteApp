@@ -41,14 +41,16 @@ class AddFoodViewModel @Inject constructor(
 
     // ── اختيار الفئة ──
     fun onCategorySelected(category: FoodCategory) {
-        // ✅ اقتراح ذكي: نضبط مكان التخزين الافتراضي لهذه الفئة تلقائياً
-        // مثلاً: إذا اختار "ألبان" → نضبط "ثلاجة" تلقائياً
-        // المستخدم يمكنه تغييرها يدوياً بعد ذلك
+        // ✅ اقتراح ذكي: نضبط مكان التخزين + تاريخ الصلاحية الافتراضي
+        val smartExpiry = ExpiryPreset.entries.firstOrNull { it.daysFromNow == category.defaultExpiryDays }
+            ?: ExpiryPreset.ONE_WEEK
+
         _uiState.update {
             it.copy(
                 category = category,
-                foodId = null,  // إعادة ضبط الطعام
-                location = category.defaultLocation  // ⭐ اقتراح ذكي
+                foodId = null,
+                location = category.defaultLocation,        // ⭐ اقتراح ذكي للمكان
+                expiryPreset = smartExpiry,                  // ⭐ اقتراح ذكي للصلاحية
             )
         }
     }
@@ -104,10 +106,7 @@ class AddFoodViewModel @Inject constructor(
         val food = state.category.commonFoods.firstOrNull { it.id == foodId } ?: return
 
         viewModelScope.launch {
-            // حساب الـ timestamp لتاريخ الانتهاء
             val expiryTimestamp = calculateExpiryTimestamp(state.expiryPreset)
-
-            // بناء الـ FoodItem
             val foodItem = FoodItem(
                 categoryId = state.category.name,
                 foodId = food.id,
@@ -117,14 +116,46 @@ class AddFoodViewModel @Inject constructor(
                 expiryTimestamp = expiryTimestamp,
                 locationId = state.location.name,
             )
-
-            // إدراج في قاعدة البيانات
             foodRepository.insert(foodItem)
 
             // إعادة ضبط الحالة بعد النجاح
             _uiState.value = AddFoodUiState()
+            onSaved()
+        }
+    }
 
-            // إعلام الـ UI
+    /**
+     * ✅ حفظ + إضافة آخر: يحفظ الطعam ثم يُعيد ضبط الحالة
+     * لكن بدل الرجوع للمخزون، يبقى في شاشة الإضافة
+     * يحتفظ بنفس الفئة (لتسهيل إضافة عناصر متشابهة)
+     */
+    fun saveAndAddAnother(onSaved: () -> Unit) {
+        val state = _uiState.value
+        val foodId = state.foodId ?: return
+        val food = state.category.commonFoods.firstOrNull { it.id == foodId } ?: return
+
+        viewModelScope.launch {
+            val expiryTimestamp = calculateExpiryTimestamp(state.expiryPreset)
+            val foodItem = FoodItem(
+                categoryId = state.category.name,
+                foodId = food.id,
+                foodLabelResId = food.labelResId,
+                quantity = state.quantity,
+                unitId = state.unit.name,
+                expiryTimestamp = expiryTimestamp,
+                locationId = state.location.name,
+            )
+            foodRepository.insert(foodItem)
+
+            // ✅ إعادة ضبط لكن نحتفظ بنفس الفئة + اقتراحاتها الذكية
+            val savedCategory = state.category
+            val smartExpiry = ExpiryPreset.entries.firstOrNull { it.daysFromNow == savedCategory.defaultExpiryDays }
+                ?: ExpiryPreset.ONE_WEEK
+            _uiState.value = AddFoodUiState(
+                category = savedCategory,
+                location = savedCategory.defaultLocation,
+                expiryPreset = smartExpiry,
+            )
             onSaved()
         }
     }

@@ -85,6 +85,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
+    // ✅ AppCompat — مطلوب لـ AppCompatDelegate (اللغة + الوضع الليلي)
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     // ── Compose (يتم إدارة كل الإصدارات عبر BOM) ─────────
     implementation(platform(libs.androidx.compose.bom))

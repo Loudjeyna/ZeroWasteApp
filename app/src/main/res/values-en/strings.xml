@@ -77,7 +77,7 @@
 
     <!-- ═════════════ Shopping ═════════════ -->
     <string name="shopping_title">Shopping List</string>
-    <string name="shopping_empty">List is empty</string>
+    <string name="shopping_empty">List is empty\nTap \"Quick add\" to add an item</string>
     <string name="shopping_grouped_by">Grouped by: %1$s</string>
     <string name="shopping_group_by_category">Category</string>
     <string name="shopping_group_by_store">Store</string>
@@ -96,6 +96,7 @@
     <string name="settings_language">Language</string>
     <string name="settings_language_ar">العربية</string>
     <string name="settings_language_en">English</string>
+    <string name="settings_language_fr">Français</string>
     <string name="settings_language_system">Follow system</string>
 
     <string name="settings_theme">Theme</string>
@@ -424,4 +425,40 @@
     <string name="save_edit">Save edit</string>
     <string name="confirm_delete_title">Confirm delete</string>
     <string name="confirm_delete_message">Are you sure? The food will be permanently deleted from the database.</string>
+
+    <!-- ═════════════ Shopping screen (S) ═════════════ -->
+    <string name="shopping_count_total">All: %1$d</string>
+    <string name="shopping_filter_all">All</string>
+    <string name="shopping_filter_unchecked">Unchecked</string>
+    <string name="shopping_filter_checked">Checked</string>
+    <string name="shopping_search_hint">Search list…</string>
+    <string name="shopping_add_to_list">Add to list</string>
+    <string name="shopping_step_category">1. Category</string>
+    <string name="shopping_step_food">2. Item</string>
+    <string name="shopping_step_quantity">3. Quantity</string>
+    <string name="shopping_step_unit">4. Unit</string>
+
+    <!-- ═════════════ Settings screen (SE) ═════════════ -->
+    <!-- Note: settings_language_* and settings_theme_* exist in the old settings section -->
+    <string name="settings_section_feedback">Feedback</string>
+    <string name="settings_feedback">Send feedback</string>
+    <string name="settings_feedback_desc">Share your suggestions and complaints</string>
+    <string name="settings_section_danger">Danger zone</string>
+    <string name="settings_danger_warning">⚠️ The following actions cannot be undone. Be careful.</string>
+    <string name="settings_delete_all">Delete all data</string>
+    <string name="confirm_delete_all_title_1">First confirmation</string>
+    <string name="confirm_delete_all_message_1">All food items and shopping list will be permanently deleted. Continue?</string>
+    <string name="confirm_delete_all_title_2">Final confirmation</string>
+    <string name="confirm_delete_all_message_2">⚠️ Final warning: Everything will be permanently deleted. Sure?</string>
+    <string name="continue_anyway">Continue anyway</string>
+    <string name="days">days</string>
+
+    <!-- ═════════════ First setup + notification bell ═════════════ -->
+    <string name="first_setup_title">Welcome to ZeroWaste! 🌱</string>
+    <string name="first_setup_message">Let\'s keep your food fresh together! When would you like to receive expiry alerts?</string>
+    <string name="first_setup_later">Later</string>
+    <string name="first_setup_set_now">Set now</string>
+    <string name="notification_bell_desc">Notifications</string>
+    <string name="notification_summary">Items needing attention: %1$d</string>
+    <string name="add_another">Add another</string>
 </resources>

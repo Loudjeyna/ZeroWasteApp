@@ -7,6 +7,7 @@ import com.zerowaste.app.data.model.RecipeMatchResult
 import com.zerowaste.app.data.model.RecipeMatchStatus
 import com.zerowaste.app.data.repository.FoodRepository
 import com.zerowaste.app.data.repository.RecipeRepository
+import com.zerowaste.app.data.repository.ShoppingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,6 +41,7 @@ class RecipesViewModel @Inject constructor(
     @ApplicationContext private val appContext: Context,
     private val recipeRepository: RecipeRepository,
     private val foodRepository: FoodRepository,
+    private val shoppingRepository: ShoppingRepository,
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -104,11 +106,27 @@ class RecipesViewModel @Inject constructor(
 
     /**
      * إضافة المكوّنات الناقصة لقائمة التسوق
-     * (سيُفعّل فعلياً عند بناء شاشة التسوق في الخطوة 7)
+     * ✅ فعّال الآن (S6): نضيف كل مكوّن ناقص إلى ShoppingRepository
      */
     fun addMissingToShopping(match: RecipeMatchResult) {
         viewModelScope.launch {
-            // TODO: استدعاء shoppingRepository.add(match.missingIngredients) لاحقاً
+            val recipe = match.recipe
+            for (ingredient in match.missingIngredients) {
+                // نجد foodId من قائمة matchingFoodIds (نأخذ الأول)
+                val foodId = ingredient.matchingFoodIds.firstOrNull() ?: continue
+                // نجد الفئة المناسبة من FoodCategory
+                val category = com.zerowaste.app.data.model.FoodCategory.entries.firstOrNull { cat ->
+                    cat.commonFoods.any { it.id == foodId }
+                } ?: com.zerowaste.app.data.model.FoodCategory.OTHER
+
+                shoppingRepository.addFromRecipe(
+                    category = category,
+                    foodId = foodId,
+                    quantity = 1,
+                    unit = com.zerowaste.app.data.model.QuantityUnit.PIECE,
+                    recipeId = recipe.id,
+                )
+            }
         }
     }
 

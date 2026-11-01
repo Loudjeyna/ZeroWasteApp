@@ -58,6 +58,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import com.zerowaste.app.util.NumberUtils
 
 /**
  * FoodActionBottomSheet — النافذة المنبثقة لإجراءات الطعام (محدّثة E2)
@@ -220,11 +221,11 @@ private fun BottomSheetContent(
         ) {
             DetailRow(
                 label = stringResource(R.string.quantity_remaining),
-                value = "${foodItem.remainingQuantity}/${foodItem.quantity} ${stringResource(unit.symbolResId)}",
+                value = "${NumberUtils.formatPair(foodItem.remainingQuantity, foodItem.quantity)} ${stringResource(unit.symbolResId)}",
             )
             DetailRow(
                 label = stringResource(R.string.expiry_date),
-                value = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                value = SimpleDateFormat("dd/MM/yyyy", Locale.US)
                     .format(Date(foodItem.expiryTimestamp)),
             )
             DetailRow(
@@ -504,7 +505,7 @@ private fun UseSection(
         )
 
         Text(
-            text = "$amount ${stringResource(unit.symbolResId)}",
+            text = "${NumberUtils.formatInt(amount)} ${stringResource(unit.symbolResId)}",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
@@ -543,7 +544,7 @@ private fun UseSection(
                     Text(
                         text = label,
                         color = if (amount == value) MaterialTheme.colorScheme.onPrimary
-                        else MaterialTheme.colorScheme.onSurfaceVariant,
+                                else MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.SemiBold,
                         style = MaterialTheme.typography.labelLarge,
                     )
@@ -569,7 +570,7 @@ private fun UseSection(
             }
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "$amount",
+                text = NumberUtils.formatInt(amount),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,
@@ -665,7 +666,7 @@ private fun EditSection(
             }
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "$quantity",
+                text = NumberUtils.formatInt(quantity),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,
@@ -727,7 +728,7 @@ private fun EditSection(
                             Text(
                                 text = label,
                                 color = if (isSelected) MaterialTheme.colorScheme.onPrimary
-                                else MaterialTheme.colorScheme.onSurfaceVariant,
+                                        else MaterialTheme.colorScheme.onSurfaceVariant,
                                 style = MaterialTheme.typography.labelSmall,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                                 textAlign = TextAlign.Center,
@@ -774,7 +775,7 @@ private fun EditSection(
                                 text = "${location.emoji} ${stringResource(location.labelResId)}",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = if (isSelected) Color(location.colorArgb)
-                                else MaterialTheme.colorScheme.onSurfaceVariant,
+                                        else MaterialTheme.colorScheme.onSurfaceVariant,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                             )
                         }

@@ -34,11 +34,15 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -83,6 +87,23 @@ fun AddFoodScreen(
     viewModel: AddFoodViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
+
+    // ✅ حالة "نجاح الحفظ" — تعرض رسالة + زرّين
+    var showSuccess by remember { mutableStateOf(false) }
+
+    // إذا showSuccess → نعرض شاشة النجاح بدل نموذج الإضافة
+    if (showSuccess) {
+        SuccessScreen(
+            onDone = {
+                showSuccess = false
+                onSaved()  // الرجوع للمخزون
+            },
+            onAddAnother = {
+                showSuccess = false  // نعود للنموذج (تمت إعادة الضبط في ViewModel)
+            },
+        )
+        return
+    }
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -180,7 +201,10 @@ fun AddFoodScreen(
             // ──────────── زر الحفظ ────────────
             SaveButton(
                 enabled = state.isComplete,
-                onSave = { viewModel.saveFood(onSaved) },
+                onSave = {
+                    // ✅ نحفظ ثم نعرض شاشة النجاح
+                    viewModel.saveFood { showSuccess = true }
+                },
             )
 
             // مساحة إضافية للـ bottom bar
@@ -606,6 +630,86 @@ private fun SaveButton(
                     text = stringResource(R.string.add_food_save),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
+                )
+            }
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  SuccessScreen — شاشة نجاح الحفظ + زر "أضف آخر"
+// ═══════════════════════════════════════════════════════════════════
+
+@Composable
+private fun SuccessScreen(
+    onDone: () -> Unit,
+    onAddAnother: () -> Unit,
+) {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            // أيقونة النجاح
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Check,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(40.dp),
+                )
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = stringResource(R.string.msg_food_added),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground,
+                textAlign = TextAlign.Center,
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // زر "أضف آخر"
+            Button(
+                onClick = onAddAnother,
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                ),
+                shape = RoundedCornerShape(12.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.add_another),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // زر "تم"
+            OutlinedButton(
+                onClick = onDone,
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                shape = RoundedCornerShape(12.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.action_close),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Medium,
                 )
             }
         }

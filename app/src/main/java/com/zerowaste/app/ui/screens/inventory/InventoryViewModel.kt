@@ -6,6 +6,7 @@ import com.zerowaste.app.data.model.FoodExpiryStatus
 import com.zerowaste.app.data.model.FoodItem
 import com.zerowaste.app.data.model.FoodItemStatus
 import com.zerowaste.app.data.repository.FoodRepository
+import com.zerowaste.app.data.repository.ShoppingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -48,6 +49,7 @@ enum class InventoryFilter {
 @HiltViewModel
 class InventoryViewModel @Inject constructor(
     private val foodRepository: FoodRepository,
+    private val shoppingRepository: ShoppingRepository,  // ⬅️ جديد لإعادة الشراء
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -78,7 +80,7 @@ class InventoryViewModel @Inject constructor(
 
         // فلترة حسب الـ status
         val now = System.currentTimeMillis()
-        val soonThreshold = now + (3L * 24 * 60 * 60 * 1000)
+        val soonThreshold = now + (5L * 24 * 60 * 60 * 1000)  // ⬅️ 5 أيام (مُحدَّث من 3)
 
         val baseList: List<FoodItem> = when (filter) {
             InventoryFilter.ALL -> {
@@ -123,11 +125,27 @@ class InventoryViewModel @Inject constructor(
         }
         val expiredCount = allItems.count { it.toStatus() == FoodItemStatus.EXPIRED }
 
+        // ✅ attentionCount: العناصر التي تحتاج تنبيهاً فعلاً
+        // = (نشطة + قاربت الانتهاء SOON) + (نشطة + منتهية EXPIRED) + (حالتها EXPIRED)
+        val attentionCount = allItems.count { item ->
+            val status = item.toStatus()
+            val expiryStatus = FoodExpiryStatus.fromExpiry(item.expiryTimestamp, now)
+            when {
+                // الحالة EXPIRED (تم تحويلها تلقائياً)
+                status == FoodItemStatus.EXPIRED -> true
+                // نشطة لكن قاربت الانتهاء (SOON) أو انتهت فعلاً لكن لم تُحوّل بعد
+                (status == FoodItemStatus.AVAILABLE || status == FoodItemStatus.IN_USE) &&
+                        (expiryStatus == FoodExpiryStatus.SOON || expiryStatus == FoodExpiryStatus.EXPIRED) -> true
+                else -> false
+            }
+        }
+
         InventoryUiState(
             items = withExpiryStatus,
             totalCount = allItems.size,
             activeCount = activeCount,
             expiredCount = expiredCount,
+            attentionCount = attentionCount,  // ✅ العدد الصحيح
             historyCount = allItems.count {
                 it.toStatus() == FoodItemStatus.FINISHED ||
                         it.toStatus() == FoodItemStatus.DISCARDED
@@ -217,21 +235,26 @@ class InventoryViewModel @Inject constructor(
     }
 
     /**
-     * Repurchase: إعادة شراء نفس الطعام (إضافة كمية جديدة)
-     * ننشئ FoodItem جديد بنفس الفئة/النوع/المكان، بكمية افتراضية
+     * Repurchase: إضافة نفس الطعام إلى **قائمة التسوق** (وليس المخزون)
+     *
+     * ✅ المنطق الصحيح:
+     *  - المستخدم انتهى من الطعam (FINISHED/DISCARDED/EXPIRED)
+     *  - يريد شراءه مرة أخرى
+     *  - نضيفه إلى قائمة التسوق حتى يتذكّره عند التسوّق
+     *  - عندما يشتريه فعلاً، يضيفه يدوياً إلى المخزون عبر AddFoodScreen
+     *
+     * (سابقاً: كان يضيف إلى foodRepository → خطأ! الآن يضيف إلى shoppingRepository)
      */
     fun repurchase(item: FoodItem, quantity: Int = 1) {
         viewModelScope.launch {
-            val newItem = com.zerowaste.app.data.model.FoodItem(
-                categoryId = item.categoryId,
+            val category = item.toCategory()
+            val unit = item.toUnit()
+            shoppingRepository.addQuick(
+                category = category,
                 foodId = item.foodId,
-                foodLabelResId = item.foodLabelResId,
                 quantity = quantity,
-                unitId = item.unitId,
-                expiryTimestamp = System.currentTimeMillis() + (7L * 24 * 60 * 60 * 1000), // افتراضي: أسبوع
-                locationId = item.locationId,
+                unit = unit,
             )
-            foodRepository.insert(newItem)
         }
     }
 
@@ -251,6 +274,7 @@ class InventoryViewModel @Inject constructor(
         val totalCount: Int = 0,
         val activeCount: Int = 0,
         val expiredCount: Int = 0,
+        val attentionCount: Int = 0,  // ✅ جديد: عناصر تحتاج تنبيهاً
         val historyCount: Int = 0,
         val filter: InventoryFilter = InventoryFilter.ALL,
         val searchQuery: String = "",

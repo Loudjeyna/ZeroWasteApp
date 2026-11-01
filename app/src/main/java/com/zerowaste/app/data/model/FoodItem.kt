@@ -127,18 +127,26 @@ data class FoodItem(
  * حالة الطعام من حيث الصلاحية (مرتبطة بالـ expiry، مستقلة عن الاستهلاك)
  */
 enum class FoodExpiryStatus {
-    FRESH,    // طازج - باقي أكثر من 3 أيام
-    SOON,     // قريب الانتهاء - باقي 1-3 أيام
+    FRESH,    // طازج - باقي أكثر من 5 أيام
+    SOON,     // قريب الانتهاء - باقي 1-5 أيام
     EXPIRED;  // منتهي - تجاوز تاريخ الانتهاء
 
     companion object {
+        /**
+         * حساب حالة الطعام من تاريخ الانتهاء
+         *
+         * @param expiryTimestamp تاريخ الانتهاء بالـ millis
+         * @param now الوقت الحالي (مخصص للاختبار)
+         *
+         * العتبة: 5 أيام (مُحدَّثة من 3 إلى 5 أيام بناءً على طلب المستخدم)
+         */
         fun fromExpiry(expiryTimestamp: Long, now: Long = System.currentTimeMillis()): FoodExpiryStatus {
             val diffMillis = expiryTimestamp - now
             val diffDays = diffMillis / (1000 * 60 * 60 * 24)
             return when {
                 diffDays < 0 -> EXPIRED       // تاريخ الانتهاء في الماضي
-                diffDays <= 3 -> SOON         // 0-3 أيام
-                else -> FRESH                 // أكثر من 3 أيام
+                diffDays <= 5 -> SOON         // 0-5 أيام
+                else -> FRESH                 // أكثر من 5 أيام
             }
         }
     }

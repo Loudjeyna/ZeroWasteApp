@@ -1,9 +1,11 @@
 package com.zerowaste.app
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,27 +23,60 @@ import com.zerowaste.app.ui.components.BadgesViewModel
 import com.zerowaste.app.ui.components.ZeroWasteBottomBar
 import com.zerowaste.app.ui.navigation.Route
 import com.zerowaste.app.ui.navigation.ZeroWasteNavGraph
+import com.zerowaste.app.ui.screens.settings.SettingsViewModel
 import com.zerowaste.app.ui.theme.ZeroWasteTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 /**
  * MainActivity — نقطة الدخول الوحيدة للتطبيق
  *
- * تستضيف:
- *   - Theme (Material 3 + Material You + Dark/Light)
- *   - Scaffold مع شريط التنقل السفلي المخصص (ZeroWasteBottomBar)
- *   - NavHost للتنقل بين 5 شاشات
- *   - BadgesViewModel لعرض البادجات الحقيقية على التبويبات
+ * ✅ محدّث:
+ *  - attachBaseContext: تطبيق اللغة المحفوظة قبل إنشاء الواجهة
+ *  - onCreate: قراءة الثيم بشكل متزامن من SharedPreferences (لا يعتمد على ViewModel)
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    /**
+     * ✅ تطبيق اللغة المحفوظة قبل أي شيء
+     */
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences("zerowaste_settings", Context.MODE_PRIVATE)
+        val languageCode = prefs.getString("language", "system") ?: "system"
+
+        if (languageCode != "system") {
+            val locale = Locale(languageCode)
+            Locale.setDefault(locale)
+            val config = android.content.res.Configuration(newBase.resources.configuration)
+            config.setLocale(locale)
+            val context = newBase.createConfigurationContext(config)
+            super.attachBaseContext(context)
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Edge-to-Edge: ملء الشاشة بالكامل
         enableEdgeToEdge()
+
+        // ✅ قراءة الثيم من SharedPreferences (بشكل متزامن)
+        val prefs = getSharedPreferences("zerowaste_settings", Context.MODE_PRIVATE)
+        val themeCode = prefs.getString("theme_mode", "system") ?: "system"
+
         setContent {
-            ZeroWasteTheme {
+            // ✅ isSystemInDarkTheme() يجب أن تكون داخل @Composable
+            val darkTheme = when (themeCode) {
+                "light" -> false
+                "dark" -> true
+                else -> isSystemInDarkTheme()  // ✅ الآن داخل @Composable
+            }
+
+            ZeroWasteTheme(
+                darkTheme = darkTheme,
+                dynamicColor = false,
+            ) {
                 MainScreen()
             }
         }
@@ -55,7 +90,6 @@ fun MainScreen(
     val navController = rememberNavController()
     var currentRoute by remember { mutableStateOf(Route.Inventory.route) }
 
-    // البادجات الحقيقية من Room
     val badges by badgesViewModel.badges.collectAsState()
 
     Scaffold(
