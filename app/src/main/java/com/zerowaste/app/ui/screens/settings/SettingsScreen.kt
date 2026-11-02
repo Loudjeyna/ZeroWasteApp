@@ -1,8 +1,13 @@
 package com.zerowaste.app.ui.screens.settings
 
 import android.app.Activity
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -62,6 +67,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.zerowaste.app.R
 import com.zerowaste.app.data.repository.AppLanguage
@@ -84,6 +90,39 @@ fun SettingsScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+
+    // ✅ طالب إذن التنبيهات (Android 13+)
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            // المستخدم منح الإذن → فعّل التنبيهات
+            viewModel.setNotificationsEnabled(true)
+        }
+        // إذا رفض → الـ Switch يبقى معطّل (لا نفعّل)
+    }
+
+    // ✅ دالة مساعدة: طلب إذن التنبيهات
+    fun requestNotificationPermission(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+: نحتاج طلب الإذن
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                // الإذن ممنوح بالفعل
+                true
+            } else {
+                // طلب الإذن
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                false  // ننتظر النتيجة
+            }
+        } else {
+            // Android < 13: الإذن ممنوح تلقائياً
+            true
+        }
+    }
 
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showThemeDialog by remember { mutableStateOf(false) }
@@ -142,7 +181,18 @@ fun SettingsScreen(
                     icon = Icons.Filled.Notifications,
                     title = stringResource(R.string.settings_notifications_enabled),
                     isChecked = state.areNotificationsEnabled,
-                    onCheckedChange = viewModel::setNotificationsEnabled,
+                    onCheckedChange = { enabled ->
+                        if (enabled) {
+                            // ✅ طلب إذن التنبيهات قبل التفعيل
+                            if (requestNotificationPermission()) {
+                                viewModel.setNotificationsEnabled(true)
+                            }
+                            // إذا لم يُمنح الإذن، الـ launcher سيتولّى الأمر
+                        } else {
+                            // تعطيل مباشر
+                            viewModel.setNotificationsEnabled(false)
+                        }
+                    },
                 )
                 SettingsRow(
                     icon = Icons.Filled.Notifications,
@@ -596,7 +646,7 @@ private fun SimpleNumberRow(
                     Text(
                         text = String.format(java.util.Locale.US, "%d", num),
                         color = if (isSelected) MaterialTheme.colorScheme.onPrimary
-                                else MaterialTheme.colorScheme.onSurfaceVariant,
+                        else MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                     )
@@ -679,7 +729,7 @@ private fun SettingsRow(
     showExpandIcon: Boolean = true,  // ✅ جديد: تحكم في إظهار أيقونة ↓
 ) {
     val textColor = if (enabled) MaterialTheme.colorScheme.onSurface
-                    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
     Row(
         modifier = Modifier.fillMaxWidth()
             .clickable(enabled = enabled, onClick = onClick)
@@ -687,15 +737,15 @@ private fun SettingsRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(imageVector = icon, contentDescription = null,
-             tint = if (enabled) iconTint else iconTint.copy(alpha = 0.5f),
-             modifier = Modifier.size(24.dp))
+            tint = if (enabled) iconTint else iconTint.copy(alpha = 0.5f),
+            modifier = Modifier.size(24.dp))
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(text = title, style = MaterialTheme.typography.bodyLarge,
-                 color = textColor, fontWeight = FontWeight.Medium)
+                color = textColor, fontWeight = FontWeight.Medium)
             if (subtitle != null) {
                 Text(text = subtitle, style = MaterialTheme.typography.bodySmall,
-                     color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
         // ✅ فقط إذا showExpandIcon = true
@@ -721,21 +771,21 @@ private fun SettingsSwitchRow(
     iconTint: Color = MaterialTheme.colorScheme.primary,
 ) {
     val textColor = if (enabled) MaterialTheme.colorScheme.onSurface
-                    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(imageVector = icon, contentDescription = null,
-             tint = if (enabled) iconTint else iconTint.copy(alpha = 0.5f),
-             modifier = Modifier.size(24.dp))
+            tint = if (enabled) iconTint else iconTint.copy(alpha = 0.5f),
+            modifier = Modifier.size(24.dp))
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(text = title, style = MaterialTheme.typography.bodyLarge,
-                 color = textColor, fontWeight = FontWeight.Medium)
+                color = textColor, fontWeight = FontWeight.Medium)
             if (subtitle != null) {
                 Text(text = subtitle, style = MaterialTheme.typography.bodySmall,
-                     color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
         Switch(checked = isChecked, onCheckedChange = onCheckedChange, enabled = enabled)

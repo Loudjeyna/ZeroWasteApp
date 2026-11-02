@@ -37,7 +37,17 @@ fun ZeroWasteNavGraph(
         // 1) المخزون
         composable(Route.Inventory.route) {
             InventoryScreen(
-                onAddFoodClick = { navController.navigate(Route.Add.route) }
+                onAddFoodClick = { navController.navigate(Route.Add.route) },
+                onNavigateToSettings = {
+                    // ✅ نستعمل نفس خيارات الـ bottom bar للتنقل الصحيح
+                    navController.navigate(Route.Settings.route) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
             )
         }
 

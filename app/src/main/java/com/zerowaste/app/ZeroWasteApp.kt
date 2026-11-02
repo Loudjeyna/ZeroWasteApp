@@ -52,7 +52,7 @@ class ZeroWasteApp : Application() {
      */
     private fun scheduleNotifications() {
         val prefs = getSharedPreferences(SETTINGS_PREFS_NAME, Context.MODE_PRIVATE)
-        val notificationsEnabled = prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, true)
+        val notificationsEnabled = prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, false)  // ✅ معطّل افتراضياً
 
         if (notificationsEnabled) {
             val hour = prefs.getInt(KEY_DAILY_REMINDER_HOUR, 9)

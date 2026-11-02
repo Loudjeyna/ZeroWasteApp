@@ -78,7 +78,7 @@ class SettingsRepository @Inject constructor(
     // ═══════════════════════════════════════════════════════
 
     fun areNotificationsEnabled(): Boolean {
-        return prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, true)
+        return prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, false)  // ✅ معطّل افتراضياً
     }
 
     fun setNotificationsEnabled(enabled: Boolean) {

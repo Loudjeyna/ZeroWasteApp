@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ZeroWaste — strings.xml (French - /values-fr) -->
+<resources>
+    <!-- App -->
+    <string name="app_name">ZeroGaspillage</string>
+    <string name="app_tagline">Ne gaspillez pas votre nourriture</string>
+
+    <!-- Tabs -->
+    <string name="tab_inventory">Stock</string>
+    <string name="tab_recipes">Recettes</string>
+    <string name="tab_add">Ajouter</string>
+    <string name="tab_shopping">Courses</string>
+    <string name="tab_settings">Paramètres</string>
+
+    <!-- Notification channels -->
+    <string name="channel_critical_name">Alertes critiques</string>
+    <string name="channel_critical_desc">Alerte quand un aliment a expiré</string>
+    <string name="channel_warning_name">Avertissements d\'expiration</string>
+    <string name="channel_warning_desc">Alerte avant l\'expiration</string>
+    <string name="channel_info_name">Rappels quotidiens</string>
+    <string name="channel_info_desc">Résumé quotidien de votre stock</string>
+
+    <!-- Inventory -->
+    <string name="inventory_title">Mon Stock</string>
+    <string name="inventory_empty">Le stock est vide\nAppuyez sur le bouton Ajouter</string>
+    <string name="inventory_filter_all">Actifs</string>
+    <string name="inventory_filter_expiring">Bientôt expirés</string>
+    <string name="inventory_filter_expired">Expirés</string>
+    <string name="inventory_filter_history">Historique</string>
+    <string name="inventory_search_hint">Rechercher dans le stock…</string>
+    <string name="inventory_count_total">Total: %1$d</string>
+    <string name="inventory_count_expiring">Bientôt: %1$d</string>
+    <string name="inventory_count_expired">Expirés: %1$d</string>
+
+    <!-- Add Food -->
+    <string name="add_food_title">Ajouter un aliment</string>
+    <string name="add_food_step_category">Choisir la catégorie</string>
+    <string name="add_food_step_food_type">Choisir l\'aliment</string>
+    <string name="add_food_step_quantity">Définir la quantité</string>
+    <string name="add_food_step_expiry">Choisir la date d\'expiration</string>
+    <string name="add_food_step_location">Lieu de stockage</string>
+    <string name="add_food_save">Enregistrer</string>
+    <string name="add_food_cancel">Annuler</string>
+
+    <!-- Categories -->
+    <string name="category_fruits">Fruits</string>
+    <string name="category_vegetables">Légumes</string>
+    <string name="category_dairy">Produits laitiers</string>
+    <string name="category_meat">Viande et Poisson</string>
+    <string name="category_bakery">Boulangerie</string>
+    <string name="category_grains">Céréales et Légumineuses</string>
+    <string name="category_beverages">Boissons</string>
+    <string name="category_snacks">Snacks</string>
+    <string name="category_condiments">Condiments</string>
+    <string name="category_frozen">Surgelés</string>
+    <string name="category_other">Autres</string>
+
+    <!-- Storage locations -->
+    <string name="location_fridge">Réfrigérateur</string>
+    <string name="location_freezer">Congélateur</string>
+    <string name="location_pantry">Garde-manger</string>
+    <string name="location_counter">Comptoir</string>
+
+    <!-- Fruits -->
+    <string name="food_apple">Pomme</string>
+    <string name="food_banana">Banane</string>
+    <string name="food_orange">Orange</string>
+    <string name="food_strawberry">Fraise</string>
+    <string name="food_grapes">Raisin</string>
+    <string name="food_watermelon">Pastèque</string>
+    <string name="food_lemon">Citron</string>
+    <string name="food_avocado">Avocat</string>
+    <string name="food_mango">Mangue</string>
+    <string name="food_pear">Poire</string>
+
+    <!-- Vegetables -->
+    <string name="food_tomato">Tomate</string>
+    <string name="food_cucumber">Concombre</string>
+    <string name="food_carrot">Carotte</string>
+    <string name="food_onion">Oignon</string>
+    <string name="food_potato">Pomme de terre</string>
+    <string name="food_lettuce">Laitue</string>
+    <string name="food_pepper">Poivron</string>
+    <string name="food_eggplant">Aubergine</string>
+    <string name="food_spinach">Épinards</string>
+    <string name="food_garlic">Ail</string>
+
+    <!-- Dairy -->
+    <string name="food_milk">Lait</string>
+    <string name="food_yogurt">Yaourt</string>
+    <string name="food_cheese_white">Fromage blanc</string>
+    <string name="food_cheese_yellow">Fromage jaune</string>
+    <string name="food_butter">Beurre</string>
+    <string name="food_cream">Crème</string>
+    <string name="food_labneh">Labneh</string>
+    <string name="food_eggs">Œufs</string>
+
+    <!-- Meat -->
+    <string name="food_chicken">Poulet</string>
+    <string name="food_beef">Bœuf</string>
+    <string name="food_lamb">Agneau</string>
+    <string name="food_fish">Poisson</string>
+    <string name="food_shrimp">Crevettes</string>
+    <string name="food_minced_meat">Viande hachée</string>
+    <string name="food_turkey">Dinde</string>
+
+    <!-- Bakery -->
+    <string name="food_bread_white">Pain blanc</string>
+    <string name="food_bread_arabic">Pain arabe</string>
+    <string name="food_bread_whole">Pain complet</string>
+    <string name="food_croissant">Croissant</string>
+    <string name="food_baguette">Baguette</string>
+    <string name="food_tortilla">Tortilla</string>
+    <string name="food_bun">Petit pain</string>
+
+    <!-- Grains -->
+    <string name="food_rice">Riz</string>
+    <string name="food_pasta">Pâtes</string>
+    <string name="food_flour">Farine</string>
+    <string name="food_oats">Avoine</string>
+    <string name="food_lentils">Lentilles</string>
+    <string name="food_chickpeas">Pois chiches</string>
+    <string name="food_beans">Haricots</string>
+    <string name="food_quinoa">Quinoa</string>
+    <string name="food_couscous">Couscous</string>
+
+    <!-- Beverages -->
+    <string name="food_water">Eau</string>
+    <string name="food_juice_orange">Jus d\'orange</string>
+    <string name="food_juice_apple">Jus de pomme</string>
+    <string name="food_soda">Soda</string>
+    <string name="food_tea">Thé</string>
+    <string name="food_coffee_drink">Café</string>
+    <string name="food_milk_drink">Lait</string>
+
+    <!-- Snacks -->
+    <string name="food_chips">Chips</string>
+    <string name="food_chocolate">Chocolat</string>
+    <string name="food_candy">Bonbons</string>
+    <string name="food_cookies">Biscuits</string>
+    <string name="food_crackers">Biscuits salés</string>
+    <string name="food_nuts">Noix</string>
+    <string name="food_popcorn">Pop-corn</string>
+
+    <!-- Condiments -->
+    <string name="food_salt">Sel</string>
+    <string name="food_sugar">Sucre</string>
+    <string name="food_olive_oil">Huile d\'olive</string>
+    <string name="food_vinegar">Vinaigre</string>
+    <string name="food_ketchup">Ketchup</string>
+    <string name="food_mayo">Mayonnaise</string>
+    <string name="food_mustard">Moutarde</string>
+    <string name="food_soy_sauce">Sauce soja</string>
+    <string name="food_honey">Miel</string>
+    <string name="food_jam">Confiture</string>
+
+    <!-- Frozen -->
+    <string name="food_ice_cream">Glace</string>
+    <string name="food_frozen_veg">Légumes surgelés</string>
+    <string name="food_frozen_fries">Frites surgelées</string>
+    <string name="food_frozen_pizza">Pizza surgelée</string>
+    <string name="food_frozen_burger">Burger surgelé</string>
+
+    <!-- Other -->
+    <string name="food_custom">Autre aliment</string>
+
+    <!-- Units -->
+    <string name="unit_piece">Pièce</string>
+    <string name="unit_piece_symbol">pc</string>
+    <string name="unit_kilo">Kilo</string>
+    <string name="unit_kilo_symbol">kg</string>
+    <string name="unit_gram">Gramme</string>
+    <string name="unit_gram_symbol">g</string>
+    <string name="unit_liter">Litre</string>
+    <string name="unit_liter_symbol">L</string>
+    <string name="unit_milliliter">Millilitre</string>
+    <string name="unit_milliliter_symbol">ml</string>
+    <string name="unit_pack">Paquet</string>
+    <string name="unit_pack_symbol">pkt</string>
+    <string name="unit_box">Boîte</string>
+    <string name="unit_box_symbol">boîte</string>
+    <string name="unit_bottle">Bouteille</string>
+    <string name="unit_bottle_symbol">btl</string>
+
+    <!-- Expiry presets -->
+    <string name="expiry_today">Aujourd\'hui</string>
+    <string name="expiry_3days">Dans 3 jours</string>
+    <string name="expiry_1week">Dans 1 semaine</string>
+    <string name="expiry_2weeks">Dans 2 semaines</string>
+    <string name="expiry_1month">Dans 1 mois</string>
+    <string name="expiry_3months">Dans 3 mois</string>
+    <string name="expiry_6months">Dans 6 mois</string>
+    <string name="expiry_1year">Dans 1 an</string>
+
+    <!-- Add steps -->
+    <string name="add_step_1">1. Catégorie</string>
+    <string name="add_step_2">2. Aliment</string>
+    <string name="add_step_3">3. Quantité</string>
+    <string name="add_step_4">4. Expiration</string>
+    <string name="add_step_5">5. Emplacement</string>
+    <string name="add_quantity_decrease">Diminuer</string>
+    <string name="add_quantity_increase">Augmenter</string>
+    <string name="smart_suggestion">Suggestion intelligente</string>
+    <string name="unit_label">Unité</string>
+
+    <!-- Recipes -->
+    <string name="recipes_title">Recettes algériennes</string>
+    <string name="recipes_match_smart">Correspondance</string>
+    <string name="recipes_match_full">Correspondance complète ✓</string>
+    <string name="recipes_match_partial">Manque %1$d ingrédients</string>
+    <string name="recipes_match_none">Aucun ingrédient</string>
+    <string name="recipes_search_hint">Rechercher une recette…</string>
+    <string name="recipes_filter_all">Toutes</string>
+    <string name="recipes_filter_cookable">À cuisiner maintenant</string>
+    <string name="recipes_filter_partial">Incomplètes</string>
+    <string name="recipes_ingredients">Ingrédients</string>
+    <string name="recipes_steps">Étapes</string>
+    <string name="recipes_add_to_shopping">Ajouter à la liste</string>
+    <string name="recipes_missing_ingredients">Manquant:</string>
+    <string name="recipes_filter_available">À cuisiner maintenant</string>
+    <string name="minutes">min</string>
+    <string name="people">personnes</string>
+
+    <!-- 10 Algerian recipes -->
+    <string name="recipe_chakhchoukha">Chakhchoukha algérienne</string>
+    <string name="recipe_chakhchoukha_desc">Plat festif avec pain, viande et bouillon</string>
+    <string name="recipe_chakhchoukha_step_1">Préparer et cuire la pâte puis la déchirer</string>
+    <string name="recipe_chakhchoukha_step_2">Cuire la viande avec pois chiches, tomate et oignon</string>
+    <string name="recipe_chakhchoukha_step_3">Ajouter les épices et épaissir le bouillon</string>
+    <string name="recipe_chakhchoukha_step_4">Disposer le pain et verser le bouillon avec la viande</string>
+
+    <string name="recipe_tajine_algerian">Tajine algérien au poulet</string>
+    <string name="recipe_tajine_algerian_desc">Poulet, pommes de terre, œufs et olives</string>
+    <string name="recipe_tajine_algerian_step_1">Frire le poulet avec oignon et tomate</string>
+    <string name="recipe_tajine_algerian_step_2">Ajouter les pommes de terre et les épices</string>
+    <string name="recipe_tajine_algerian_step_3">Ajouter les œufs et les olives, cuire au four</string>
+
+    <string name="recipe_harira">Harira algérienne</string>
+    <string name="recipe_harira_desc">Soupe épaisse avec lentilles, pois chiches et viande</string>
+    <string name="recipe_harira_step_1">Tremper les pois chiches et les lentilles</string>
+    <string name="recipe_harira_step_2">Cuire la viande avec tomate et oignon</string>
+    <string name="recipe_harira_step_3">Ajouter les pois chiches, les lentilles et le couscous</string>
+
+    <string name="recipe_bourek">Bourek à la viande</string>
+    <string name="recipe_bourek_desc">Rouleaux croustillants farcis à la viande hachée</string>
+    <string name="recipe_bourek_step_1">Cuire la viande hachée avec l\'oignon et les œufs</string>
+    <string name="recipe_bourek_step_2">Étaler la pâte et la couper en rectangles</string>
+    <string name="recipe_bourek_step_3">Farcir, rouler et frire dans l\'huile chaude</string>
+
+    <string name="recipe_cthitha">Chtitha aux pois chiches</string>
+    <string name="recipe_cthitha_desc">Poulet dans une sauce rouge épicée aux pois chiches</string>
+    <string name="recipe_cthitha_step_1">Frire le poulet avec l\'ail, la tomate et les épices</string>
+    <string name="recipe_cthitha_step_2">Ajouter les pois chiches cuits et laisser mijoter</string>
+    <string name="recipe_cthitha_step_3">Servir chaud avec du pain algérien</string>
+
+    <string name="recipe_mtewem">Mtewem</string>
+    <string name="recipe_mtewem_desc">Boulettes de viande à l\'ail, citron et amandes</string>
+    <string name="recipe_mtewem_step_1">Façonner des boulettes avec la viande hachée</string>
+    <string name="recipe_mtewem_step_2">Les frire puis ajouter pois chiches, ail et citron</string>
+    <string name="recipe_mtewem_step_3">Garnir d\'amandes grillées et servir</string>
+
+    <string name="recipe_frik_soup">Soupe de frik</string>
+    <string name="recipe_frik_soup_desc">Soupe algérienne au frik, viande et pois chiches</string>
+    <string name="recipe_frik_soup_step_1">Bouillir la viande avec oignon et tomate</string>
+    <string name="recipe_frik_soup_step_2">Ajouter les pois chiches et le frik</string>
+    <string name="recipe_frik_soup_step_3">Laisser mijoter à feu doux 30 minutes</string>
+
+    <string name="recipe_couscous_algerian">Couscous algérien</string>
+    <string name="recipe_couscous_algerian_desc">Plat national algérien avec viande et légumes</string>
+    <string name="recipe_couscous_algerian_step_1">Cuire le couscous à la vapeur</string>
+    <string name="recipe_couscous_algerian_step_2">Préparer le bouillon de viande avec légumes et pois chiches</string>
+    <string name="recipe_couscous_algerian_step_3">Servir avec le bouillon, la viande et les légumes</string>
+
+    <string name="recipe_barbouche">Barbouche (dessert)</string>
+    <string name="recipe_barbouche_desc">Dessert algérien à la semoule et au miel</string>
+    <string name="recipe_barbouche_step_1">Mélanger la semoule avec le beurre ou l\'huile</string>
+    <string name="recipe_barbouche_step_2">Cuire au four jusqu\'à dorure</string>
+    <string name="recipe_barbouche_step_3">Verser le miel chaud ou le sirop de sucre</string>
+
+    <string name="recipe_zlabia">Zlabia</string>
+    <string name="recipe_zlabia_desc">Dessert algérien croustillant au miel</string>
+    <string name="recipe_zlabia_step_1">Préparer une pâte liquide et la laisser fermenter</string>
+    <string name="recipe_zlabia_step_2">Verser dans l\'huile chaude en forme circulaire</string>
+    <string name="recipe_zlabia_step_3">Verser le sirop de sucre ou le miel</string>
+
+    <!-- Ingredients -->
+    <string name="ingredient_lamb">Viande</string>
+    <string name="ingredient_rice">Riz</string>
+    <string name="ingredient_yogurt">Yaourt</string>
+    <string name="ingredient_bread">Pain</string>
+    <string name="ingredient_almonds">Amandes</string>
+    <string name="ingredient_pine_nuts">Pignons</string>
+    <string name="ingredient_couscous">Couscous / Frik</string>
+    <string name="ingredient_vegetables">Légumes</string>
+    <string name="ingredient_chickpeas">Pois chiches</string>
+    <string name="ingredient_onion">Oignon</string>
+    <string name="ingredient_olive_oil">Huile</string>
+    <string name="ingredient_spices">Épices</string>
+    <string name="ingredient_eggplant">Aubergine</string>
+    <string name="ingredient_chicken">Poulet</string>
+    <string name="ingredient_tomato">Tomate</string>
+    <string name="ingredient_garlic">Ail</string>
+    <string name="ingredient_lemon">Citron</string>
+    <string name="ingredient_salt">Sel</string>
+    <string name="ingredient_beans">Haricots</string>
+    <string name="ingredient_minced_meat">Viande hachée</string>
+    <string name="ingredient_nuts">Noix</string>
+    <string name="ingredient_flour">Farine / Semoule</string>
+    <string name="ingredient_cheese">Fromage</string>
+    <string name="ingredient_potato">Pomme de terre</string>
+    <string name="ingredient_eggs">Œufs</string>
+    <string name="ingredient_lentils">Lentilles</string>
+    <string name="ingredient_honey">Miel</string>
+    <string name="ingredient_sugar">Sucre</string>
+
+    <!-- Shopping -->
+    <string name="shopping_title">Liste de courses</string>
+    <string name="shopping_empty">La liste est vide\nAppuyez sur \"Ajout rapide\"</string>
+    <string name="shopping_add_quick">Ajout rapide</string>
+    <string name="shopping_add_to_list">Ajouter à la liste</string>
+    <string name="shopping_step_category">1. Catégorie</string>
+    <string name="shopping_step_food">2. Aliment</string>
+    <string name="shopping_step_quantity">3. Quantité</string>
+    <string name="shopping_step_unit">4. Unité</string>
+    <string name="shopping_count_total">Total: %1$d</string>
+    <string name="shopping_filter_all">Tous</string>
+    <string name="shopping_filter_unchecked">Non achetés</string>
+    <string name="shopping_filter_checked">Achetés</string>
+    <string name="shopping_clear_checked">Supprimer achetés</string>
+    <string name="shopping_search_hint">Rechercher dans la liste…</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_section_general">Général</string>
+    <string name="settings_section_notifications">Notifications</string>
+    <string name="settings_section_appearance">Apparence</string>
+    <string name="settings_section_about">À propos</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_language_ar">العربية</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_language_fr">Français</string>
+    <string name="settings_language_system">Suivre le système</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_dark">Sombre</string>
+    <string name="settings_theme_system">Suivre le système</string>
+    <string name="settings_dynamic_color">Couleurs Material You</string>
+    <string name="settings_dynamic_color_desc">Utiliser les couleurs du fond d\'écran</string>
+    <string name="settings_notifications_enabled">Activer les notifications</string>
+    <string name="settings_notify_days_before">Notifier avant (jours)</string>
+    <string name="settings_notify_time">Heure du rappel</string>
+    <string name="settings_notify_sound">Son de notification</string>
+    <string name="settings_notify_vibration">Vibration</string>
+    <string name="settings_about_version">Version</string>
+    <string name="settings_about_rate">Noter l\'application</string>
+    <string name="settings_about_share">Partager avec un ami</string>
+
+    <!-- Settings: Extra -->
+    <string name="settings_section_feedback">Commentaires</string>
+    <string name="settings_feedback">Envoyer un commentaire</string>
+    <string name="settings_feedback_desc">Partagez vos suggestions</string>
+    <string name="settings_section_danger">Zone de danger</string>
+    <string name="settings_danger_warning">⚠️ Les actions suivantes sont irréversibles.</string>
+    <string name="settings_delete_all">Supprimer toutes les données</string>
+    <string name="confirm_delete_all_title_1">Première confirmation</string>
+    <string name="confirm_delete_all_message_1">Tous les aliments et la liste seront supprimés. Continuer?</string>
+    <string name="confirm_delete_all_title_2">Confirmation finale</string>
+    <string name="confirm_delete_all_message_2">⚠️ Dernier avertissement: tout sera supprimé. Sûr?</string>
+    <string name="continue_anyway">Continuer</string>
+    <string name="days">jours</string>
+
+    <!-- First setup + notification bell -->
+    <string name="first_setup_title">Bienvenue à ZeroGaspillage! 🌱</string>
+    <string name="first_setup_message">Gardons votre nourriture fraîche! Quand voulez-vous recevoir des alertes?</string>
+    <string name="first_setup_later">Plus tard</string>
+    <string name="first_setup_set_now">Configurer maintenant</string>
+    <string name="notification_bell_desc">Notifications</string>
+    <string name="notification_summary">Articles à surveiller: %1$d</string>
+
+    <!-- Actions -->
+    <string name="action_save">Enregistrer</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_edit">Modifier</string>
+    <string name="action_share">Partager</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_yes">Oui</string>
+    <string name="action_no">Non</string>
+    <string name="action_confirm">Confirmer</string>
+    <string name="action_repurchase">Racheter</string>
+    <string name="action_use">Utiliser une partie</string>
+    <string name="action_finish">Terminé</string>
+    <string name="action_discard">Jeter</string>
+    <string name="action_no_actions_available">Aucune action disponible</string>
+    <string name="choose_use_amount">Choisir la quantité</string>
+    <string name="use_full">Tout</string>
+    <string name="confirm_use">Confirmer</string>
+    <string name="back">Retour</string>
+    <string name="quantity_remaining">Quantité restante</string>
+    <string name="expiry_date">Date d\'expiration</string>
+    <string name="storage_location_label">Emplacement</string>
+    <string name="section_main_actions">Actions principales</string>
+    <string name="section_extra_actions">Actions supplémentaires</string>
+    <string name="edit_title">Modifier les données</string>
+    <string name="quantity_label">Quantité originale</string>
+    <string name="expiry_label">Date d\'expiration</string>
+    <string name="location_label">Emplacement</string>
+    <string name="save_edit">Enregistrer</string>
+    <string name="confirm_delete_title">Confirmer la suppression</string>
+    <string name="confirm_delete_message">Êtes-vous sûr? Suppression définitive.</string>
+
+    <!-- Messages -->
+    <string name="msg_food_added">Aliment ajouté ✓</string>
+    <string name="msg_food_deleted">Aliment supprimé</string>
+    <string name="msg_confirm_delete">Êtes-vous sûr de vouloir supprimer?</string>
+    <string name="msg_select_category_first">Choisir d\'abord la catégorie</string>
+    <string name="msg_added_to_shopping">Ajouté à la liste de courses</string>
+
+    <!-- Status -->
+    <string name="status_available">Disponible</string>
+    <string name="status_in_use">En cours d\'utilisation</string>
+    <string name="status_finished">Entièrement consommé</string>
+    <string name="status_discarded">Jeté</string>
+    <string name="status_expired">Expiré</string>
+    <string name="add_another">Ajouter un autre</string>
+</resources>

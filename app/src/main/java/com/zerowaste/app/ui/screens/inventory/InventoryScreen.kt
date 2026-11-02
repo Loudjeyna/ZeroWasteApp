@@ -42,6 +42,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -87,6 +88,7 @@ import java.util.Locale
 fun InventoryScreen(
     modifier: Modifier = Modifier,
     onAddFoodClick: () -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},  // ✅ جديد: للتنقل للإعدادات
     viewModel: InventoryViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -96,11 +98,15 @@ fun InventoryScreen(
     // ✅ إعداد أول مرة: dialog لتذكير المستخدم بضبط التنبيهات
     var showFirstSetup by remember { mutableStateOf(false) }
     val prefs = remember { context.getSharedPreferences("zerowaste_settings", android.content.Context.MODE_PRIVATE) }
-    val isFirstLaunch = remember { !prefs.getBoolean("first_launch_done", false) }
 
-    // إظهار dialog الإعداد أول مرة فقط بعد إضافة طعام
-    if (isFirstLaunch && state.totalCount > 0 && !showFirstSetup) {
-        showFirstSetup = true
+    // ✅ نستعمل LaunchedEffect بدل التحقق المستمر
+    // يعمل مرة واحدة فقط عند تغيّر totalCount (وليس في كل recomposition)
+    LaunchedEffect(state.totalCount) {
+        if (state.totalCount > 0 &&
+            !prefs.getBoolean("first_launch_done", false) &&
+            !showFirstSetup) {
+            showFirstSetup = true
+        }
     }
 
     Surface(
@@ -165,18 +171,19 @@ fun InventoryScreen(
     if (showFirstSetup) {
         AlertDialog(
             onDismissRequest = {
+                // ✅ "Later": نخفي فقط (لا نحفظ first_launch_done)
+                // سيعود الـ dialog عند إضافة عنصر جديد كتذكير
                 showFirstSetup = false
-                prefs.edit().putBoolean("first_launch_done", true).apply()
             },
             title = { Text(stringResource(R.string.first_setup_title)) },
             text = { Text(stringResource(R.string.first_setup_message)) },
             confirmButton = {
                 Button(
                     onClick = {
+                        // ✅ "Set now": نحفظ + نذهب للإعدادات
                         showFirstSetup = false
                         prefs.edit().putBoolean("first_launch_done", true).apply()
-                        // فتح شاشة الإعدادات (التنبيهات)
-                        // يمكن للمستخدم ضبط الوقت هناك
+                        onNavigateToSettings()
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -187,8 +194,8 @@ fun InventoryScreen(
             },
             dismissButton = {
                 TextButton(onClick = {
+                    // ✅ "Later": نخفي فقط (سيذكر مرة أخرى عند إضافة عنصر جديد)
                     showFirstSetup = false
-                    prefs.edit().putBoolean("first_launch_done", true).apply()
                 }) {
                     Text(stringResource(R.string.first_setup_later))
                 }

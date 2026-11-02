@@ -151,7 +151,7 @@ class SettingsViewModel @Inject constructor(
         val language: AppLanguage = AppLanguage.SYSTEM,
         val themeMode: AppThemeMode = AppThemeMode.SYSTEM,
         val isDynamicColorEnabled: Boolean = true,
-        val areNotificationsEnabled: Boolean = true,
+        val areNotificationsEnabled: Boolean = false,  // ✅ معطّل افتراضياً
         val notifyDaysBefore: Int = 5,
         val dailyReminderTime: Pair<Int, Int> = 9 to 0,
         val isVibrationEnabled: Boolean = true,
